@@ -14,4 +14,16 @@ class PagesController extends Controller
     {
       return view('financing');
     }
+    public function faqs()
+    {
+      return view('faqs');
+    }
+    public function contact()
+    {
+      return view('contact');
+    }
+    public function applyForFinancing()
+    {
+
+    }
 }

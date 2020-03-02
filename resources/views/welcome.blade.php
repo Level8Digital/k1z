@@ -167,8 +167,8 @@
           </p>
         </div>
       </div>
-
-      <div class="spacer-75"></div>
+      <hr class="fw">
+      <div class="spacer-30"></div>
 
       <!-- Recently Listed Vehicles -->
       <section class="listing-block recent-vehicles">
@@ -198,7 +198,7 @@
         </div>
       </section>
       <hr class="fw">
-      <div class="spacer-75"></div>
+      <div class="spacer-30"></div>
 
       <div class="row">
         <div class="col-md-4">
@@ -233,7 +233,6 @@
         </div>
       </div>
       <hr class="fw">
-      <div class="spacer-75"></div>
 
       <!-- Latest Testimonials -->
       <div class="row">
@@ -295,7 +294,7 @@
     <div class="spacer-75"></div>
 
     <!-- FAQ -->
-    <div class="lgray-bg padding-tb75">
+    <div class="lgray-bg padding-tb75" id="faqs">
       <div class="container">
         <h4 class="accent-color short">K1Z Auto Sales F.A.Q.</h4>
         <h3>Common Questions Asked by People Who Haven't Used Our Services Yet</h3>

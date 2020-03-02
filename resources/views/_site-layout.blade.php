@@ -49,7 +49,7 @@
     <div class="container sp-cont">
       <div class="search-function">
           <a href="#" class="search-trigger"><i class="fa fa-search"></i></a>
-          <span><i class="fa fa-phone"></i> Call us <strong>1800 011 2211</strong> <em>or</em> search</span>
+          <span><i class="fa fa-phone"></i> Call us <strong>403-393-6696</strong> <em>or</em> search</span>
       </div>
       <a href="#" class="visible-sm visible-xs" id="menu-toggle"><i class="fa fa-bars"></i></a>
       <!-- Main Navigation -->
@@ -64,10 +64,10 @@
           <li><a href="/financing">Financing</a>
           </li>
           <li>
-            <a href="">FAQs</a>
+            <a href="/faqs">FAQs</a>
           </li>
           <li>
-            <a href="">Contact</a>
+            <a href="/contact">Contact</a>
           </li>
         </ul>
       </nav>

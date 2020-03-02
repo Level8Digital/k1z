@@ -57,9 +57,10 @@
         </div>
 
         <hr class="fw">
-        <div class="spacer-75"></div>
+
 
         <div class="row">
+          <h2>About Financing</h2>
           <div class="col-md-6">
             <p class="drop-caps">We cater to all car buyers, not just “sub-prime”. We carry anything from a reliable Toyota Camry to a swanky Audi R8! Rest assured, if we don’t have what you’re looking for, we will help you locate what you’re looking for. If you’re happy with your current vehicle but are interested in lowering your existing payments, we can help with that too. Speak with one of our sales consultants today about refinancing options.
             Get behind the wheel of a pristine pre-owned car in Lethbridge with smart auto loans from K1Z Auto Sales.</p>
@@ -76,8 +77,70 @@
           </div>
         </div>
         <hr class="fw">
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Apply For Financing</h2>
+            <form method="post" id="applyForFinancing" name="apply" class="contact-form clearfix" action="">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="firstname" name="firstname"  class="form-control input-lg" placeholder="First Name*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="lastname" name="lastname"  class="form-control input-lg" placeholder="Last Name*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Adress*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="city" name="city"  class="form-control input-lg" placeholder="City*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="postalcode" name="postalcode"  class="form-control input-lg" placeholder="Postal Code*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="resduration" name="resduration"  class="form-control input-lg" placeholder="Time at Residence*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Phone Number*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="birthday" name="birthday"  class="form-control input-lg" placeholder="Date of Birth*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="sin" name="sin"  class="form-control input-lg" placeholder="S.I.N (Optional)">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" id="employer" name="employer"  class="form-control input-lg" placeholder="Employer*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="occupation" name="occupation"  class="form-control input-lg" placeholder="Occupation*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="income" name="income"  class="form-control input-lg" placeholder="Gross Income*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="employerphone" name="employerphone"  class="form-control input-lg" placeholder="Employer Phone Number*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="employeraddress" name="employeraddress"  class="form-control input-lg" placeholder="Employer Address*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="empduration" name="empduration"  class="form-control input-lg" placeholder="Time at Employer*">
+                  </div>
+                  <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg pull-right" value="Submit now!">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div><!-- / form row -->
+
         <div class="spacer-75"></div>
-        
+
       </div> <!-- / container -->
 
     </div><!-- /content -->
