@@ -42,6 +42,16 @@
 <div id="content" class="content full">
   <div class="spacer-30"></div>
   <div class="container">
+    @if(Session::has('success'))
+    <div class="alert alert-success">
+        {{Session::get('success')}}
+    </div>
+    @endif
+    @if(Session::has('error'))
+    <div class="alert alert-danger">
+        {{Session::get('error')}}
+    </div>
+    @endif
     <div class="listing-header margin-40">
       <h2>Contact Us</h2>
     </div>
@@ -57,25 +67,44 @@
         <i class="fa fa-home"></i> <b>Sun - CLOSED</b><br>
       </div>
       <div class="col-md-9 col-sm-8">
-        <form method="post" id="contactform" name="contactform" class="contact-form clearfix" action="mail/contact.php">
+        <form method="post" name="contactform" class="contact-form clearfix" action="/send-contact">
+          @csrf
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <input type="text" id="fname" name="First Name"  class="form-control input-lg" placeholder="First name*">
+                <input type="text" id="fname" name="firstname"  class="form-control input-lg" placeholder="First name *" value="{{ old('firstname') }}">
+                @error('firstname')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
-                <input type="email" id="lname" name="Last Name"  class="form-control input-lg" placeholder="Last name">
+                <input type="text" id="lname" name="lastname"  class="form-control input-lg" placeholder="Last name *" value="{{ old('lastname') }}">
+                @error('lastname')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="Email*">
+                <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="Email *" value="{{ old('email') }}">
+                @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
               </div>
               <div class="form-group">
-                <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Phone">
+                <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Phone" value="{{ old('phone') }}">
               </div>
             </div>
             <div class="col-md-7">
               <div class="form-group">
-                <textarea cols="6" rows="8" id="comments" name="comments" class="form-control input-lg" placeholder="Message"></textarea>
+                <textarea cols="6" rows="8" name="message" class="form-control input-lg" placeholder="Message *">{{ old('message') }}</textarea>
+                @error('message')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="form-group">
+                <input type="text" name="captcha" class="form-control input-lg" placeholder="{{ session('a12Ty9UkJ1') }}">
+                @error('captcha')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
               </div>
               <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg pull-right" value="Submit now!">
             </div>

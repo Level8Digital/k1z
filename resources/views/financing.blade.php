@@ -43,6 +43,16 @@
   <div class="main" role="main">
     <div id="content" class="content full padding-b0">
       <div class="container">
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{Session::get('success')}}
+        </div>
+        @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{Session::get('error')}}
+        </div>
+        @endif
         <!-- Welcome Content and Services overview -->
         <div class="row">
           <div class="col-md-6">
@@ -82,55 +92,113 @@
         <div class="row">
           <div class="col-md-12">
             <h2>Apply For Financing</h2>
-            <form method="post" id="applyForFinancing" name="apply" class="contact-form clearfix" action="">
+            <form method="post" name="apply" class="contact-form clearfix" action="/send-financing">
+              @csrf
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="firstname" name="firstname"  class="form-control input-lg" placeholder="First Name*">
+                    <input type="text" id="firstname" name="firstname"  class="form-control input-lg" placeholder="First Name *" value="{{ old('firstname') }}">
+                    @error('firstname')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="lastname" name="lastname"  class="form-control input-lg" placeholder="Last Name*">
+                    <input type="text" id="lastname" name="lastname"  class="form-control input-lg" placeholder="Last Name *" value="{{ old('lastname') }}">
+                    @error('lastname')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Adress*">
+                    <input type="text" id="birthday" name="birthday"  class="form-control input-lg" placeholder="Date of Birth *" value="{{ old('birthday') }}">
+                    @error('birthday')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="city" name="city"  class="form-control input-lg" placeholder="City*">
+                    <input type="text" id="sin" name="sin"  class="form-control input-lg" placeholder="S.I.N (Optional)" value="{{ old('sin') }}">
+                    @error('sin')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                  </div>                  
+                  <div class="form-group">
+                    <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Adress *" value="{{ old('address') }}">
+                    @error('address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="postalcode" name="postalcode"  class="form-control input-lg" placeholder="Postal Code*">
+                    <input type="text" id="city" name="city"  class="form-control input-lg" placeholder="City *" value="{{ old('city') }}">
+                    @error('city')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="resduration" name="resduration"  class="form-control input-lg" placeholder="Time at Residence*">
+                    <input type="text" id="postalcode" name="postalcode"  class="form-control input-lg" placeholder="Postal Code *" value="{{ old('postalcode') }}">
+                    @error('postalcode')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Phone Number*">
+                    <input type="text" id="resduration" name="resduration"  class="form-control input-lg" placeholder="Time at Residence *" value="{{ old('resduration') }}">
+                    @error('resduration')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="birthday" name="birthday"  class="form-control input-lg" placeholder="Date of Birth*">
+                    <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Phone Number *" value="{{ old('phone') }}">
+                    @error('phone')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="sin" name="sin"  class="form-control input-lg" placeholder="S.I.N (Optional)">
+                    <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="Email *" value="{{ old('email') }}">
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input type="text" id="employer" name="employer"  class="form-control input-lg" placeholder="Employer*">
+                    <input type="text" id="employer" name="employer"  class="form-control input-lg" placeholder="Employer *" value="{{ old('employer') }}">
+                    @error('employer')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="occupation" name="occupation"  class="form-control input-lg" placeholder="Occupation*">
+                    <input type="text" id="occupation" name="occupation"  class="form-control input-lg" placeholder="Occupation *" value="{{ old('occupation') }}">
+                    @error('occupation')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="income" name="income"  class="form-control input-lg" placeholder="Gross Income*">
+                    <input type="text" id="income" name="income"  class="form-control input-lg" placeholder="Gross Income *" value="{{ old('income') }}">
+                    @error('income')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="employerphone" name="employerphone"  class="form-control input-lg" placeholder="Employer Phone Number*">
+                    <input type="text" id="employerphone" name="employerphone"  class="form-control input-lg" placeholder="Employer Phone Number *" value="{{ old('employerphone') }}">
+                    @error('employerphone')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="employeraddress" name="employeraddress"  class="form-control input-lg" placeholder="Employer Address*">
+                    <input type="text" id="employeraddress" name="employeraddress"  class="form-control input-lg" placeholder="Employer Address *" value="{{ old('employeraddress') }}">
+                    @error('employeraddress')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="empduration" name="empduration"  class="form-control input-lg" placeholder="Time at Employer*">
+                    <input type="text" id="empduration" name="empduration"  class="form-control input-lg" placeholder="Time at Employer *" value="{{ old('empduration') }}">
+                    @error('empduration')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="captcha" class="form-control input-lg" placeholder="{{ session('a12Ty9UkJ1') }}">
+                    @error('captcha')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg pull-right" value="Submit now!">
                 </div>
