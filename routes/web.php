@@ -21,3 +21,7 @@ Route::get('/faqs', 'PagesController@faqs');
 Route::get('/contact', 'PagesController@contact');
 Route::post('/send-contact', 'PagesController@sendContact');
 Route::post('/send-financing', 'PagesController@sendFinancing');
+
+Auth::routes(['register' => false]);
+
+Route::get('/home', 'HomeController@index')->name('home');

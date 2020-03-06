@@ -9,8 +9,20 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
-    }
+     /**
+      * Run the database seeds.
+      *
+      * @return void
+      */
+     public function run()
+     {
+        //$password = config('app.admincred');
+         DB::table('users')->insert([
+           'name' => 'admin',
+           'email' => 'contact@k1zautosales.ca',
+           'email_verified_at' => now(),
+           'password' => bcrypt('cubanlink') // password
+
+         ]);
+     }
 }
