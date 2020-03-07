@@ -26,10 +26,11 @@ class ContactForm extends FormRequest
         return [
           'firstname' => 'required|max:25',
           'lastname' => 'required|max:25',
-          'email' => 'required|email',
+          'email' => 'required|email|max:100',
           'phone' => 'nullable|max:17',
           'message' => 'required|max:255',
-          'captcha' => 'required|numeric'
+          'captcha' => 'required|numeric',
+          'vehicle' => 'nullable|max:100'
         ];
     }
 }

@@ -30,6 +30,7 @@ class CreateInventoryTable extends Migration
             $table->string('page', 5)->nullable();
             $table->string('ad_num', 35)->nullable();
             $table->decimal('price', 8, 0)->nullable();
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }

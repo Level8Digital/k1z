@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use App\Imports\InventoryImport;
 use App\Inventory;
 use Maatwebsite\Excel\Facades\Excel;
@@ -26,7 +28,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-      return view('home');
+      $inventory = DB::table('inventory')->paginate(10);
+
+      return view('home', ['inventory' => $inventory]);
+    }
+
+    /**
+     * Show the add vehicle page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function addVehicle()
+    {
+      return view('addVehicle');
+    }
+
+    /**
+     * Show the edit vehicle page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function editVehicle($id)
+    {
+      $vehicle = Inventory::where('id', $id)->first();
+
+      return view('editVehicle', ['vehicle' => $vehicle]);
     }
 
     public function importXls(Request $request)

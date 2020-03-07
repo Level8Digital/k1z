@@ -69,6 +69,7 @@
       <div class="col-md-9 col-sm-8">
         <form method="post" name="contactform" class="contact-form clearfix" action="/send-contact">
           @csrf
+          <input type="hidden" name="vehicle" value="">
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">

@@ -227,45 +227,44 @@
           <div class="col-md-9 results-container">
             <div class="results-container-in">
               <div id="results-holder" class="results-list-view">
-                <!-- Result Item -->
-                <div class="result-item format-standard">
-                  <div class="result-item-image">
-                    <a href="vehicle-details.html" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
-                    <span class="label label-default vehicle-age">2014</span>
-                    <span class="label label-success premium-listing">Premium Listing</span>
-                    <div class="result-item-view-buttons">
-                      <a href="https://www.youtube.com/watch?v=P5mvnA4BV7Y" data-rel="prettyPhoto"><i class="fa fa-play"></i> View video</a>
-                      <a href="vehicle-details.html"><i class="fa fa-plus"></i> View details</a>
+                @foreach($inventory as $vehicle)
+                  <!-- Result Item -->
+                  <div class="result-item format-standard">
+                    <div class="result-item-image">
+                      <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
                     </div>
-                  </div>
-                  <div class="result-item-in">
-                    <h4 class="result-item-title"><a href="vehicle-details.html">Nissan Terrano single hand driven</a></h4>
-                    <div class="result-item-cont">
-                      <div class="result-item-block col1">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam..</p>
-                      </div>
-                      <div class="result-item-block col2">
-                        <div class="result-item-pricing">
-                          <div class="price">$48000</div>
+                    <div class="result-item-in">
+                      <h4 class="result-item-title"><a href="vehicle-details.html">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model }}</a></h4>
+                      <div class="result-item-cont">
+                        <div class="result-item-block col1">
+                          <p></p>
                         </div>
-                        <div class="result-item-action-buttons">
-                          <a href="#" class="btn btn-default btn-sm"><i class="fa fa-star-o"></i> Save</a>
-                          <a href="vehicle-details.html" class="btn btn-default btn-sm">Enquire</a><br>
-                          <a href="#" class="distance-calc"><i class="fa fa-map-marker"></i> Distance from me?</a>
+                        <div class="result-item-block col2">
+                          <div class="result-item-pricing">
+                            <div class="price">${{ number_format($vehicle->price) }}</div>
+                          </div>
+                          <div class="result-item-action-buttons">
+
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="result-item-features">
-                      <ul class="inline">
-                        <li>4 door SUV</li>
-                        <li>6 cyl, 3.0 L Petrol</li>
-                        <li>6 speed Automatic</li>
-                        <li>4x4 Wheel Drive</li>
-                        <li>Listed by Individual</li>
-                      </ul>
+                      <div class="result-item-features">
+                        <ul class="inline">
+                          @if($vehicle->trim != null)
+                            <li>{{ $vehicle->trim }}</li>
+                          @endif
+                          <li>{{ number_format($vehicle->kms) }} km</li>
+                          <li>{{ $vehicle->trans }}</li>
+                          <li>{{ $vehicle->vin }}</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
+                @endforeach
+              </div>
+              <hr class="fw">
+              <div style="text-align:center;">
+                {{ $inventory->links() }}
               </div>
             </div>
           </div><!-- / Listing results -->
