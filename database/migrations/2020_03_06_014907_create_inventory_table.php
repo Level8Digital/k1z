@@ -15,16 +15,21 @@ class CreateInventoryTable extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('stock_num', 25);
-            $table->string('vin', 25);
-            $table->string('year', 5);
-            $table->string('make', 35);
-            $table->string('model', 35);
+            $table->string('stock_num', 25)->nullable();
+            $table->string('vin', 25)->nullable();
+            $table->string('year', 5)->nullable();
+            $table->string('make', 35)->nullable();
+            $table->string('model', 35)->nullable();
             $table->string('trim', 15)->nullable();
-            $table->decimal('kms', 8, 0);
-            $table->string('color', 35);
-            $table->string('trans', 35);
-            $table->decimal('price', 8, 0);
+            $table->decimal('kms', 8, 0)->nullable();
+            $table->string('title', 100)->nullable();
+            $table->string('color', 65)->nullable();
+            $table->string('trans', 65)->nullable();
+            $table->string('dis', 5)->nullable();
+            $table->string('dok', 5)->nullable();
+            $table->string('page', 5)->nullable();
+            $table->string('ad_num', 35)->nullable();
+            $table->decimal('price', 8, 0)->nullable();
             $table->timestamps();
         });
     }

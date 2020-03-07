@@ -25,3 +25,4 @@ Route::post('/send-financing', 'PagesController@sendFinancing');
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/import-xls', 'HomeController@importXls');
