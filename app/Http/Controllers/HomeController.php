@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Imports\InventoryImport;
 use App\Inventory;
+use App\Image;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
@@ -53,6 +54,38 @@ class HomeController extends Controller
       $vehicle = Inventory::where('id', $id)->first();
 
       return view('editVehicle', ['vehicle' => $vehicle]);
+    }
+
+    public function updateVehicle(Request $request)
+    {
+      // Find vehicle
+  		$vehicle = Inventory::findOrFail(request()->id);
+      // Fill vehicle
+  		$vehicle->fill(request()->all());
+  		// Save vehcile
+  		if(! $vehicle->save()){
+  			// Return error is save didnt work
+        return back()->with('error', 'Could not save vehicle!')->withInput();
+  		}
+
+      // if validation success
+      if($images = request()->file('images')) {
+
+        forEach($images as $img){
+
+          $name = uniqid() . '.' . $img->getClientOriginalExtension();
+          $targetPath = storage_path('app/public/images/');
+
+          if($img->move($targetPath, $name)) {
+              // save file name in the database
+              Image::create(['inventory_id' => $vehicle->id, 'src' => $targetPath . $name]);
+          }
+        }// foreach
+      }// if images
+
+      $vehicle->refresh();
+
+      return redirect('/edit-vehicle/'.$vehicle->id)->with('success', 'Vehicle has been updated!')->with('vehicle', $vehicle);
     }
 
     public function importXls(Request $request)

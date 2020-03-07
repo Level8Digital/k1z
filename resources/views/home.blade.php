@@ -8,11 +8,16 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    @if(Session::has('success'))
-                    <div class="alert alert-success">
-                        {{Session::get('success')}}
-                    </div>
-                    @endif
+                  @if(Session::has('success'))
+                  <div class="alert alert-success">
+                      {{Session::get('success')}}
+                  </div>
+                  @endif
+                  @if(Session::has('error'))
+                  <div class="alert alert-danger">
+                      {{Session::get('error')}}
+                  </div>
+                  @endif
 
                   <!-- UPLOAD CSV FILE -->
                   <div class="tab-pane">
@@ -70,7 +75,9 @@
                       </tbody>
                     </table>
                   </div>
-                  <button class="btn btn-default btn-sm disabled">Delete Selected</button>
+                  <div style="text-align:center;">
+                    {{ $inventory->links() }}
+                  </div>
                 </div>
 
             </div>

@@ -18,7 +18,6 @@ class CreateImagesTable extends Migration
             $table->unsignedBigInteger('inventory_id');
             $table->foreign('inventory_id')->references('id')->on('inventory');
             $table->text('src');
-            $table->string('type', 5);
             $table->timestamps();
         });
     }

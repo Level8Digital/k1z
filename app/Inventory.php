@@ -19,7 +19,15 @@ class Inventory extends Model
    * @var array
    */
   protected $fillable = [
-    'id', 'stock_num', 'vin', 'year', 'make', 'model', 'trim', 'kms', 'title', 'color', 'trans', 'dis', 'dok', 'page', 'ad_num', 'price'
+    'id', 'stock_num', 'vin', 'year', 'make', 'model', 'trim', 'kms', 'title', 'color', 'trans', 'dis', 'dok', 'page', 'ad_num', 'price', 'desc'
   ];
+
+  /**
+   * Get images
+   */
+  public function images()
+  {
+      return $this->hasMany('App\Image');
+  }
 
 }
