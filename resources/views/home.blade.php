@@ -35,50 +35,62 @@
                 </div><!-- / UPLOAD CSV FILE -->
 
                 <div class="dashboard-block">
-                  <div class="dashboard-block-head">
-                    <a href="/add-vehicle" class="btn btn-default btn-sm pull-right">Add Vehicle</a>
-                    <h3>Inventory</h3>
+                  <form method="POST" action="/remove-vehicles">
+                    @csrf
+                    <div class="dashboard-block-head">
+                      <button type="submit" class="btn btn-danger btn-sm pull-right">Remove Selected</button>
+                      <a href="/add-vehicle" class="btn btn-default btn-sm pull-right" style="margin-right:15px;">Add Vehicle</a>
+                      <h3>Inventory</h3>
+                    </div>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered dashboard-tables saved-cars-table">
+                          <thead>
+                            <tr>
+                              <td></td>
+                              <td>Description</td>
+                              <td>Price</td>
+                              <td>Payment</td>
+                              <td>Actions</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach($inventory as $vehicle)
+
+                              <tr>
+                                <td valign="middle">
+                                  <input type="checkbox" name="vehicles[]" value="{{ $vehicle->id }}">
+                                </td>
+                                <td>
+                                  <!-- Result -->
+                                  <a href="vehicle-details.html" class="car-image"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                                  <div class="search-find-results">
+                                    <h5><a href="vehicle-details.html">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model . ' | ' . $vehicle->stock_num }}</a></h5>
+                                    <ul class="inline">
+                                      <li>{{ $vehicle->vin }}</li>
+                                      <li>{{ $vehicle->trim }}</li>
+                                      <li>{{ $vehicle->trans }}</li>
+                                      <li>{{ $vehicle->color }}</li>
+                                    </ul>
+                                  </div>
+                                </td>
+                                <td><span class="price">${{ number_format($vehicle->price) }}</span></td>
+                                <td align="center"><span class="label label-warning">Pending payment</span></td>
+                                <td align="center">
+                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="text-default btn" title="Edit"><i class="fa fa-archive"></i></a>
+                                </td>
+                              </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+
+                    </div>
+                    <div style="text-align:center;">
+                      {{ $inventory->links() }}
+                    </div>
+                    </form>
                   </div>
-                  <div class="table-responsive">
-                    <table class="table table-bordered dashboard-tables saved-cars-table">
-                      <thead>
-                        <tr>
-                          <td>Description</td>
-                          <td>Price</td>
-                          <td>Payment</td>
-                          <td>Actions</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach($inventory as $vehicle)
-                          <tr>
-                            <td>
-                              <!-- Result -->
-                              <a href="vehicle-details.html" class="car-image"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
-                              <div class="search-find-results">
-                                <h5><a href="vehicle-details.html">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model . ' | ' . $vehicle->stock_num }}</a></h5>
-                                <ul class="inline">
-                                  <li>{{ $vehicle->vin }}</li>
-                                  <li>{{ $vehicle->trim }}</li>
-                                  <li>{{ $vehicle->trans }}</li>
-                                  <li>{{ $vehicle->color }}</li>
-                                </ul>
-                              </div>
-                            </td>
-                            <td><span class="price">${{ number_format($vehicle->price) }}</span></td>
-                            <td align="center"><span class="label label-warning">Pending payment</span></td>
-                            <td align="center">
-                                <a href="/edit-vehicle/{{ $vehicle->id }}" class="text-default btn" title="Edit"><i class="fa fa-archive"></i></a>                                                <button class="text-danger" title="Delete"><i class="fa fa-times"></i></button>
-                            </td>
-                          </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                  <div style="text-align:center;">
-                    {{ $inventory->links() }}
-                  </div>
-                </div>
+
 
             </div>
         </div>

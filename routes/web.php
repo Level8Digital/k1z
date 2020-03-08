@@ -31,3 +31,5 @@ Route::post('/import-xls', 'HomeController@importXls');
 Route::post('/update-vehicle', 'HomeController@updateVehicle');
 Route::get('/add-vehicle', 'HomeController@addVehicle');
 Route::get('/edit-vehicle/{id}', 'HomeController@editVehicle');
+Route::post('/remove-images', 'HomeController@removeImages');
+Route::post('/remove-vehicles', 'HomeController@removeVehicles');

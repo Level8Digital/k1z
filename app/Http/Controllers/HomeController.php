@@ -51,7 +51,7 @@ class HomeController extends Controller
      */
     public function editVehicle($id)
     {
-      $vehicle = Inventory::where('id', $id)->first();
+      $vehicle = Inventory::with(['images'])->where('id', $id)->first();
 
       return view('editVehicle', ['vehicle' => $vehicle]);
     }
@@ -68,17 +68,14 @@ class HomeController extends Controller
         return back()->with('error', 'Could not save vehicle!')->withInput();
   		}
 
-      // if validation success
+      // Handle images
       if($images = request()->file('images')) {
-
         forEach($images as $img){
-
           $name = uniqid() . '.' . $img->getClientOriginalExtension();
           $targetPath = storage_path('app/public/images/');
-
           if($img->move($targetPath, $name)) {
               // save file name in the database
-              Image::create(['inventory_id' => $vehicle->id, 'src' => $targetPath . $name]);
+              Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
           }
         }// foreach
       }// if images
@@ -86,6 +83,69 @@ class HomeController extends Controller
       $vehicle->refresh();
 
       return redirect('/edit-vehicle/'.$vehicle->id)->with('success', 'Vehicle has been updated!')->with('vehicle', $vehicle);
+    }
+
+    public function removeVehicles(Request $request)
+    {
+      forEach(request()->vehicles as $vhcId){
+        // Ensure key is a number
+        if(is_numeric($vhcId)){
+
+          $vhc = Inventory::with(['images'])->find($vhcId);
+          $vhcImages = $vhc->images;
+
+          // Remove vehicles images
+          forEach($vhcImages as $img){
+            // Save image src
+            $src = $img->src;
+            // Remove image db entry
+            if($img->delete()){
+              // Remove image from dir
+              if(!unlink(storage_path() . '/app/public/images/' . $src)){
+                // Return error
+                return back()->with('error', 'Problem unlinking image!');
+              }
+            } else{
+              // Return error
+              return back()->with('error', 'Problem removing image from db!');
+            }
+          }
+
+          // Remove vehicle db entry
+      		if(!$vhc->delete()){
+            // Return success
+            return back()->with('error', 'Problem removing vehicle from db!');
+      		}
+        }
+      }
+
+      // Success
+      return back()->with('success', 'Vehicles have been removed!');    
+    }
+
+    public function removeImages(Request $request)
+    {
+      forEach(request()->toRemove as $imgId){
+        // Ensure key is a number
+      	if(is_numeric($imgId)){
+      		// Find image
+      		$img = Image::find($imgId);
+          $src = $img->src;
+      		// Remove image db entry
+      		if($img->delete()){
+            // Remove image from dir
+            if(!unlink(storage_path() . '/app/public/images/' . $src)){
+  		        // Return error
+  		        return back()->with('error', 'Problem unlinking image!');
+      			}
+      		} else{
+            // Return error
+            return back()->with('error', 'Problem removing image from db!');
+          }
+      	}
+      }
+      // Return success
+      return back()->with('success', 'Images have been removed!');
     }
 
     public function importXls(Request $request)
