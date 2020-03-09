@@ -47,179 +47,133 @@
           <!-- Search Filters -->
           <div class="col-md-3 search-filters" id="Search-Filters">
             <div class="tbsticky filters-sidebar">
-              <h3>Refine Search</h3>
-              <div class="accordion" id="toggleArea">
-                <!-- Filter by Year -->
-                <div class="accordion-group panel">
-                  <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseOne">Year<i class="fa fa-angle-down"></i> </a> </div>
-                  <div id="collapseOne" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <div class="form-inline">
-                          <div class="form-group">
-                            <label>Min Year</label>
-                            <select name="Min Year" class="form-control selectpicker">
-                              <option selected>Any</option>
-                              <option>2005</option>
-                              <option>2006</option>
-                              <option>2007</option>
-                              <option>2008</option>
-                              <option>2009</option>
-                              <option>2010</option>
-                              <option>2011</option>
-                              <option>2012</option>
-                              <option>2013</option>
-                              <option>2014</option>
-                            </select>
-                          </div>
+              <form method="POST" action="/filter-inventory">
+                @csrf
+                <h3>Refine Search</h3>
+                <div class="accordion" id="toggleArea">
+                  <!-- Filter by Year -->
+                  <div class="accordion-group panel">
+                    <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseOne">Year<i class="fa fa-angle-down"></i> </a> </div>
+                    <div id="collapseOne" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <div class="form-inline">
+                            <div class="form-group">
+                              <label>Min Year</label>
+                              <select name="minyear" class="form-control selectpicker">
+                                <option selected value="any">Any</option>
+                                <option value="2000">2000</option>
+                                <option value="2001">2001</option>
+                                <option value="2002">2002</option>
+                                <option value="2003">2003</option>
+                                <option value="2004">2004</option>
+                                <option value="2005">2005</option>
+                                <option value="2006">2006</option>
+                                <option value="2007">2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                              </select>
+                            </div>
+                            <div class="form-group last-child">
+                              <label>Max Year</label>
+                              <select name="maxyear" class="form-control selectpicker">
+                                  <option selected value="any">Any</option>
+                                  <option value="2000">2000</option>
+                                  <option value="2001">2001</option>
+                                  <option value="2002">2002</option>
+                                  <option value="2003">2003</option>
+                                  <option value="2004">2004</option>
+                                  <option value="2005">2005</option>
+                                  <option value="2006">2006</option>
+                                  <option value="2007">2007</option>
+                                  <option value="2008">2008</option>
+                                  <option value="2009">2009</option>
+                                  <option value="2010">2010</option>
+                                  <option value="2011">2011</option>
+                                  <option value="2012">2012</option>
+                                  <option value="2013">2013</option>
+                                  <option value="2014">2014</option>
+                                  <option value="2015">2015</option>
+                                  <option value="2016">2016</option>
+                                  <option value="2017">2017</option>
+                                  <option value="2018">2018</option>
+                                  <option value="2019">2019</option>
+                              </select>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- / Filter by year -->
+                  <!-- Filter by Make -->
+                  <div class="accordion-group panel">
+                    <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseTwo">Make<i class="fa fa-angle-down"></i> </a> </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <ul class="filter-options-list list-group">
+                          @foreach($makes as $mk)
+                            <li class="list-group-item" style="margin-top: 5px;">
+                              <input type="checkbox" name="makes[]" value="{{ $mk->make }}" style="margin-right:3px; margin-top: -1px;">
+                              <span class="badge">{{ $mk->total }}</span>{{ $mk->make }}
+                            </li>
+                          @endforeach
+                        </ul>
+                      </div>
+                    </div>
+                  </div><!-- / Filter by make -->
+                  <!-- Filter by Mileage -->
+                  <div class="accordion-group">
+                    <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseFive">Mileage <i class="fa fa-angle-down"></i> </a> </div>
+                    <div id="collapseFive" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <div class="form-inline">
                           <div class="form-group last-child">
-                            <label>Max Year</label>
-                            <select name="Max Year" class="form-control selectpicker">
-                                <option selected>Any</option>
-                                <option>2005</option>
-                                <option>2006</option>
-                                <option>2007</option>
-                                <option>2008</option>
-                                <option>2009</option>
-                                <option>2010</option>
-                                <option>2011</option>
-                                <option>2012</option>
-                                <option>2013</option>
-                                <option>2014</option>
+                            <label>Max Mileage</label>
+                            <select name="maxmileage" class="form-control selectpicker">
+                              <option selected value="any">Any</option>
+                              <option value="50000">50,00 km</option>
+                              <option value="75000">75,00 km</option>
+                              <option value="100000">100,00 km</option>
+                              <option value="150000">150,00 km</option>
+                              <option value="200000">200,00 km</option>
+                              <option value="250000">250,00 km</option>
                             </select>
                           </div>
-                        <button type="submit" class="btn btn-default btn-sm pull-right">Filter</button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div> <!-- / Filter by year -->
-                <!-- Filter by Make -->
-                <div class="accordion-group panel">
-                  <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseTwo">Make<i class="fa fa-angle-down"></i> </a> </div>
-                  <div id="collapseTwo" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <ul class="filter-options-list list-group">
-                        <li class="list-group-item"><span class="badge">4</span><a href="#">Bentley</a></li>
-                        <li class="list-group-item"><span class="badge">23</span><a href="#">Nissan</a></li>
-                        <li class="list-group-item"><span class="badge">41</span><a href="#">Mercedes</a></li>
-                        <li class="list-group-item"><span class="badge">6</span><a href="#">Ford</a></li>
-                        <li class="list-group-item"><span class="badge">54</span><a href="#">Honda</a></li>
-                        <li class="list-group-item"><span class="badge">9</span><a href="#">Mazda</a></li>
-                        <li class="list-group-item"><span class="badge">38</span><a href="#">Toyota</a></li>
-                        <li class="list-group-item"><span class="badge">45</span><a href="#">BMW</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div><!-- / Filter by make -->
-                <!-- Filter by Model -->
-                <div class="accordion-group">
-                  <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseThird">Model <i class="fa fa-angle-down"></i> </a> </div>
-                  <div id="collapseThird" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <ul class="filter-options-list list-group">
-                        <li class="list-group-item"><span class="badge">38</span><a href="#">Alpina</a></li>
-                        <li class="list-group-item"><span class="badge">6</span><a href="#">M3</a></li>
-                        <li class="list-group-item"><span class="badge">54</span><a href="#">M5</a></li>
-                        <li class="list-group-item"><span class="badge">9</span><a href="#">M6</a></li>
-                        <li class="list-group-item"><span class="badge">4</span><a href="#">X1</a></li>
-                        <li class="list-group-item"><span class="badge">23</span><a href="#">X3</a></li>
-                        <li class="list-group-item"><span class="badge">41</span><a href="#">X5</a></li>
-                        <li class="list-group-item"><span class="badge">38</span><a href="#">Z3</a></li>
-                        <li class="list-group-item"><span class="badge">38</span><a href="#">Z4</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div><!-- / Filter by model -->
+                  </div><!-- / Filter by mileage -->
 
-                <!-- Filter by Mileage -->
-                <div class="accordion-group">
-                  <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseFive">Mileage <i class="fa fa-angle-down"></i> </a> </div>
-                  <div id="collapseFive" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <label>Min Mileage</label>
-                          <select name="Min Mileage" class="form-control selectpicker">
-                            <option selected>Any</option>
-                            <option>10000</option>
-                            <option>20000</option>
-                            <option>30000</option>
-                            <option>40000</option>
-                            <option>50000</option>
-                            <option>60000</option>
-                            <option>70000</option>
-                            <option>80000</option>
-                            <option>90000</option>
-                            <option>100000</option>
-                          </select>
+                  <!-- Filter by Price -->
+                  <div class="accordion-group">
+                    <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseEight">Price <i class="fa fa-angle-down"></i> </a> </div>
+                    <div id="collapseEight" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                        <div class="form-inline">
+                          <div class="form-group last-child">
+                            <label>Price Max</label>
+                            <select name="maxprice" class="form-control selectpicker">
+                              <option selected value="any">Any</option>
+                              <option value="5000">$5,000</option>
+                              <option value="10000">$10,000</option>
+                              <option value="20000">$20,000</option>
+                              <option value="30000">$30,000</option>
+                              <option value="40000">$40,000</option>
+                              <option value="50000">$50,000</option>
+                              <option value="100000">$100,000</option>
+                            </select>
+                          </div>
                         </div>
-                        <div class="form-group last-child">
-                          <label>Max Mileage</label>
-                          <select name="Max Mileage" class="form-control selectpicker">
-                            <option selected>Any</option>
-                            <option>10000</option>
-                            <option>20000</option>
-                            <option>30000</option>
-                            <option>40000</option>
-                            <option>50000</option>
-                            <option>60000</option>
-                            <option>70000</option>
-                            <option>80000</option>
-                            <option>90000</option>
-                            <option>100000</option>
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-default btn-sm pull-right">Filter</button>
                       </div>
                     </div>
-                  </div>
-                </div><!-- / Filter by mileage -->
-
-                <!-- Filter by Price -->
-                <div class="accordion-group">
-                  <div class="accordion-heading togglize"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseEight">Price <i class="fa fa-angle-down"></i> </a> </div>
-                  <div id="collapseEight" class="accordion-body collapse">
-                    <div class="accordion-inner">
-                      <div class="form-inline">
-                        <div class="form-group">
-                          <label>Price Min</label>
-                          <select name="Min Price" class="form-control selectpicker">
-                              <option selected>Any</option>
-                              <option>$10000</option>
-                              <option>$20000</option>
-                              <option>$30000</option>
-                              <option>$40000</option>
-                              <option>$50000</option>
-                              <option>$60000</option>
-                              <option>$70000</option>
-                              <option>$80000</option>
-                              <option>$90000</option>
-                              <option>$100000</option>
-                          </select>
-                        </div>
-                        <div class="form-group last-child">
-                          <label>Price Max</label>
-                          <select name="Max Price" class="form-control selectpicker">
-                            <option selected>Any</option>
-                            <option>$10000</option>
-                            <option>$20000</option>
-                            <option>$30000</option>
-                            <option>$40000</option>
-                            <option>$50000</option>
-                            <option>$60000</option>
-                            <option>$70000</option>
-                            <option>$80000</option>
-                            <option>$90000</option>
-                            <option>$100000</option>
-                          </select>
-                        </div>
-                        <button type="submit" class="btn btn-default btn-sm pull-right">Filter</button>
-                      </div>
-                    </div>
-                  </div>
-                </div><!-- / Filter by price -->
-              </div><!-- End Toggle -->
-              <a href="#" class="btn-default btn-sm btn"><i class="fa fa-refresh"></i> Reset search</a>
-              <a href="#" class="btn-primary btn-sm btn"><i class="fa fa-folder-o"></i> Save search</a>
+                  </div><!-- / Filter by price -->
+                </div><!-- End Toggle -->
+                <button class="btn-default btn-sm btn"><i class="fa fa-refresh"></i> Reset search</button>
+                <button type="submit" class="btn-primary btn-sm btn"><i class="fa fa-folder-o"></i> Run search</button>
+              </form>
             </div>
           </div>
 

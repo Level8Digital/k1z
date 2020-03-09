@@ -11,12 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // SITE routes
+Route::get('/', 'PagesController@welcome');
 Route::get('/inventory', 'PagesController@inventory');
+Route::post('/filter-inventory', 'PagesController@filterInventory');
 Route::get('/financing', 'PagesController@financing');
 Route::get('/faqs', 'PagesController@faqs');
 Route::get('/contact', 'PagesController@contact');

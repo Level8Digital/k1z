@@ -179,19 +179,19 @@
           <div class="carousel-wrapper">
             <div class="row">
               <ul class="owl-carousel carousel-fw" id="vehicle-slider" data-columns="4" data-autoplay="" data-pagination="yes" data-arrows="no" data-single-item="no" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
-                <li class="item">
-                  <div class="vehicle-block format-standard">
-                    <a href="vehicle-details.html" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
-                    <div class="vehicle-block-content">
-                      <span class="label label-default vehicle-age">2014</span>
-                      <span class="label label-success premium-listing">Premium Listing</span>
-                      <h5 class="vehicle-title"><a href="vehicle-details.html">Mercedes-benz SL 300</a></h5>
-                      <span class="vehicle-meta">Mercedes, Grey color, by <abbr class="user-type" title="Listed by an individual user">Individual</abbr></span>
-                      <a href="results-list.html" title="View all Sedans" class="vehicle-body-type"><img src="images/body-types/sedan.png" width="30" alt=""></a>
-                      <span class="vehicle-cost">$48500</span>
+                @foreach($recentInventory as $vehicle)
+                  <li class="item">
+                    <div class="vehicle-block format-standard">
+                      <a href="vehicle-details.html" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                      <div class="vehicle-block-content">
+                        <span class="label label-default vehicle-age">{{ $vehicle->year }}</span>
+                        <h5 class="vehicle-title"><a href="vehicle-details.html">{{ $vehicle->make . ' ' . $vehicle->model }}</a></h5>
+                        <span class="vehicle-meta">{{ number_format($vehicle->kms) . ' km | ' . $vehicle->trans . ' | ' . $vehicle->color  }}</span>
+                        <span class="vehicle-cost">${{ number_format($vehicle->price) }}</span>
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
+                @endforeach
               </ul>
             </div>
           </div>

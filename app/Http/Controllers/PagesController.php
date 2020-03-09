@@ -14,6 +14,12 @@ use App\Mail\SendFinancing;
 
 class PagesController extends Controller
 {
+    public function welcome()
+    {
+      $inventory = Inventory::with(['images'])->orderBy('desc')->limit(12)->get();
+
+      return view('welcome', ['recentInventory' => $inventory]);
+    }
 
     /*
      * SEND CONTACT FORM
@@ -22,7 +28,54 @@ class PagesController extends Controller
     {
       $inventory = DB::table('inventory')->paginate(10);
 
-      return view('inventory', ['inventory' => $inventory]);
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('inventory', ['inventory' => $inventory, 'makes' => $uniqueMakes]);
+    }
+
+    public function filterInventory(Request $request)
+    {
+      print_r(request()->all());
+
+      $fields = request()->all();
+
+      $whereFields = [];
+      // Default value for whereBetweenFields
+      $whereBetweenFields = false;
+      // HANDLE YEAR FILTER
+      if($fields['minyear'] != 'any' && $fields['maxyear'] == 'any'){
+        // Year is greater than the minyear
+        $year = $fields['minyear'];
+        // Push to $whereFields
+        array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '>']);
+      } elseif($fields['maxyear'] != 'any' && $fields['minyear'] == 'any'){
+        // Year is less than the maxyear
+        $year = $fields['maxyear'];
+        // Push to $whereFields
+        array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '<']);
+      } elseif($fields['minyear'] != 'any' && $fields['maxyear'] != 'any'){
+        // Both fields are set - filter in between the years
+        // Possible where between fields for the filter
+  			$whereBetweenFields = [
+  				'first' => ['field' => 'year', 'value' => $fields['minyear']],
+  				'second' => ['field' => 'year', 'value' => $fields['maxyear']]
+  			];
+      }
+
+      // HANDLE MAKE FILTER
+
+
+      print_r( $this->genericFilter(
+  			Inventory::with([
+  				'images'
+  			])->orderBy('created_at', 'desc'),
+  			$whereFields,
+  			$whereBetweenFields
+  		));
+
     }
 
     /*
