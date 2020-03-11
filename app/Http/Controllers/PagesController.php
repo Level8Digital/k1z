@@ -26,7 +26,7 @@ class PagesController extends Controller
     */
     public function inventory()
     {
-      $inventory = DB::table('inventory')->paginate(10);
+      $inventory = DB::table('inventory')->orderBy('year', 'desc')->paginate(10);
 
       $uniqueMakes = DB::table('inventory')
                        ->select('make', DB::raw('count(*) as total'))
@@ -38,44 +38,71 @@ class PagesController extends Controller
 
     public function filterInventory(Request $request)
     {
-      print_r(request()->all());
-
       $fields = request()->all();
 
       $whereFields = [];
       // Default value for whereBetweenFields
       $whereBetweenFields = false;
-      // HANDLE YEAR FILTER
-      if($fields['minyear'] != 'any' && $fields['maxyear'] == 'any'){
-        // Year is greater than the minyear
-        $year = $fields['minyear'];
+
+      // ENSURE min is less than max
+      if($fields['minyear'] != 'any' || $fields['maxyear'] != 'any'){
+        if($fields['minyear'] < $fields['maxyear']){
+          // HANDLE YEAR FILTER
+          if($fields['minyear'] != 'any' && $fields['maxyear'] == 'any'){
+            // Year is greater than the minyear
+            $year = $fields['minyear'];
+            // Push to $whereFields
+            array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '>']);
+          } elseif($fields['maxyear'] != 'any' && $fields['minyear'] == 'any'){
+            // Year is less than the maxyear
+            $year = $fields['maxyear'];
+            // Push to $whereFields
+            array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '<']);
+          } elseif($fields['minyear'] != 'any' && $fields['maxyear'] != 'any'){
+            // Both fields are set - filter in between the years
+            // Possible where between fields for the filter
+      			$whereBetweenFields = [
+      				'first' => ['field' => 'year', 'value' => $fields['minyear']],
+      				'second' => ['field' => 'year', 'value' => $fields['maxyear']]
+      			];
+          }
+        }
+      }
+
+      // Check for mileage filter
+      if($fields['maxmileage'] != 'any'){
         // Push to $whereFields
-        array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '>']);
-      } elseif($fields['maxyear'] != 'any' && $fields['minyear'] == 'any'){
-        // Year is less than the maxyear
-        $year = $fields['maxyear'];
+        array_push($whereFields, ['filter' => true, 'field' => 'kms', 'value' => $fields['maxmileage'], 'conditional' => '<']);
+      }
+
+      // Check for mileage filter
+      if($fields['maxprice'] != 'any'){
         // Push to $whereFields
-        array_push($whereFields, ['filter' => true, 'field' => 'year', 'value' => $year, 'conditional' => '<']);
-      } elseif($fields['minyear'] != 'any' && $fields['maxyear'] != 'any'){
-        // Both fields are set - filter in between the years
-        // Possible where between fields for the filter
-  			$whereBetweenFields = [
-  				'first' => ['field' => 'year', 'value' => $fields['minyear']],
-  				'second' => ['field' => 'year', 'value' => $fields['maxyear']]
-  			];
+        array_push($whereFields, ['filter' => true, 'field' => 'price', 'value' => $fields['maxprice'], 'conditional' => '<']);
+      }
+
+      $whereInFields = false;
+      if(request()->makes){
+        $whereInFields = ['field' => 'make', 'values' => $fields['makes']];
       }
 
       // HANDLE MAKE FILTER
 
-
-      print_r( $this->genericFilter(
+      $inventory = $this->genericFilter(
   			Inventory::with([
   				'images'
-  			])->orderBy('created_at', 'desc'),
+  			])->orderBy('year', 'desc'),
   			$whereFields,
-  			$whereBetweenFields
-  		));
+  			$whereBetweenFields,
+        $whereInFields
+  		);
 
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('inventory')->with(['inventory' => $inventory, 'makes' => $uniqueMakes]);
     }
 
     /*

@@ -19,7 +19,7 @@ class Controller extends BaseController
    	 * @param $whereBetweenFields - Array - ['first => ['field', 'value'], 'second' => ['field', 'value']]
    	 * @return $collection - Result of the query
    	*/
-     protected function genericFilter($query, $whereFields, $whereBetweenFields = false)
+     protected function genericFilter($query, $whereFields, $whereBetweenFields = false, $whereInFields = false)
      {
  	    // Array to hold where clauses
  	    $queryArray = [];
@@ -38,6 +38,10 @@ class Controller extends BaseController
  	    // Add where clauses to query
  	    $query->where($queryArray);
 
+      if($whereInFields){
+        $query->whereIn($whereInFields['field'], $whereInFields['values']);
+      }
+
  	    // If there are where between fields to be added to the query
  	    if($whereBetweenFields){
  	    	$query->whereBetween(
@@ -50,5 +54,5 @@ class Controller extends BaseController
  	    $collection = $query->get();
 
  	    return $collection;
-     }    
+     }
 }

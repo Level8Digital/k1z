@@ -135,7 +135,7 @@
                             <select name="maxmileage" class="form-control selectpicker">
                               <option selected value="any">Any</option>
                               <option value="50000">50,00 km</option>
-                              <option value="75000">75,00 km</option>
+                              <option value="75000">75,000 km</option>
                               <option value="100000">100,00 km</option>
                               <option value="150000">150,00 km</option>
                               <option value="200000">200,00 km</option>
@@ -171,7 +171,7 @@
                     </div>
                   </div><!-- / Filter by price -->
                 </div><!-- End Toggle -->
-                <button class="btn-default btn-sm btn"><i class="fa fa-refresh"></i> Reset search</button>
+                <a href="/inventory" class="btn-default btn-sm btn"><i class="fa fa-refresh"></i> Reset search</a>
                 <button type="submit" class="btn-primary btn-sm btn"><i class="fa fa-folder-o"></i> Run search</button>
               </form>
             </div>
@@ -218,7 +218,9 @@
               </div>
               <hr class="fw">
               <div style="text-align:center;">
-                {{ $inventory->links() }}
+                @if($inventory  instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                  {{ $inventory->links() }}
+                @endif
               </div>
             </div>
           </div><!-- / Listing results -->
