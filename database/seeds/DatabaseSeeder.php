@@ -16,12 +16,13 @@ class DatabaseSeeder extends Seeder
       */
      public function run()
      {
-        //$password = config('app.admincred');
+        $password = config('app.auth_pass');
          DB::table('users')->insert([
            'name' => 'admin',
            'email' => 'contact@k1zautosales.ca',
            'email_verified_at' => now(),
-           'password' => bcrypt('cubanlink') // password
+           'password' => bcrypt($password), // password
+           'created_at' => now()
 
          ]);
      }

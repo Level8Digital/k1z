@@ -29,7 +29,7 @@ class VehicleForm extends FormRequest
           'year' => 'required|max:4',
           'make' => 'required|max:50',
           'model' => 'required|max:50',
-          'trim' => 'required|max:25',
+          'trim' => 'nullable|max:25',
           'kms' => 'numeric',
           'color' => 'required|max:50',
           'trans' => 'required|max:50',

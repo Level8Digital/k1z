@@ -10,6 +10,7 @@ use App\Http\Requests\VehicleForm;
 use App\Inventory;
 use App\Image;
 use Maatwebsite\Excel\Facades\Excel;
+use InterventionImage;
 
 class HomeController extends Controller
 {
@@ -75,11 +76,17 @@ class HomeController extends Controller
           forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
+            // Store image
             if($img->move($targetPath, $name)) {
-                // save file name in the database
-                Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
+              // save file name in the database
+              Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
+              // Resize image
+              $image = InterventionImage::make($targetPath . $name);
+              $image->resize(1024, null, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save($targetPath . $name);
             }
-          }// foreach
+          }
         } else{
           return back()->with('error', 'Only 9 images per vehicle can be uploaded!')->withInput();
         }
@@ -106,14 +113,29 @@ class HomeController extends Controller
       if($images = request()->file('images')) {
         // Only 9 images allowed per vehicle
         if(count($vehicle->images) < 9){
-          forEach($images as $img){
+          /*forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
             if($img->move($targetPath, $name)) {
                 // save file name in the database
                 Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
             }
-          }// foreach
+          }*/// foreach
+          forEach($images as $img){
+            $name = uniqid() . '.' . $img->getClientOriginalExtension();
+            $targetPath = storage_path('app/public/images/');
+            // Store image
+            if($img->move($targetPath, $name)) {
+              // save file name in the database
+              Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
+              // Resize image
+              $image = InterventionImage::make($targetPath . $name);
+              $image->resize(1024, null, function ($constraint) {
+                $constraint->aspectRatio();
+              })->save($targetPath . $name);
+            }
+          }
+
         } else{
           return back()->with('error', 'Only 9 images per vehicle can be uploaded!')->withInput();
         }

@@ -1311,6 +1311,7 @@ body.boxed .body{
 	body.boxed .body{
 		max-width:990px;
 	}
+
 }
 .site-header{
 	padding:20px 0 15px;
@@ -1523,7 +1524,7 @@ body.boxed .body{
 	font-size:0;
 }
 .site-logo img{
-	max-width:290px;
+	max-width:175px;
 
 	-webkit-transition: max-height 0.1s linear 0s;
 	-moz-transition: max-height 0.1s linear 0s;
@@ -1531,13 +1532,17 @@ body.boxed .body{
 	-o-transition: max-height 0.1s linear 0s;
 	transition: max-height 0.1s linear 0s;
 }
+.alt-logo img{
+	width:90%;
+	margin-left:5%;
+}
 .sticky-header .site-tagline{
 	display:none;
 }
 .sticky-header .site-logo{
 }
 .sticky-header .site-logo img{
-	max-height:35px;
+	max-height:85px;
 	-webkit-transition: max-height 0.1s linear 0s;
 	-moz-transition: max-height 0.1s linear 0s;
 	-ms-transition: max-height 0.1s linear 0s;
@@ -1930,9 +1935,9 @@ body.boxed .body{
 	content:"";
 }
 .header-v2 .site-logo{
-	padding-top:20px;
-	padding-bottom:35px;
-	min-width:248px;
+	padding-top:7px;
+	padding-bottom:15px;
+	min-width:175px;
 	-webkit-transition: padding-top 0.1s linear 0s, padding-bottom 0.1s linear 0s;
 	-moz-transition: padding-top 0.1s linear 0s, padding-bottom 0.1s linear 0s;
 	-ms-transition: padding-top 0.1s linear 0s, padding-bottom 0.1s linear 0s;
@@ -5347,9 +5352,9 @@ body{
 		padding:10px 0 ;
 	}
 	.site-logo img{
-		max-width:140px;
-		max-height:35px;
+		max-width:130px;
 	}
+
 	.header-v2 .site-logo{
 		min-width:inherit;
 	}

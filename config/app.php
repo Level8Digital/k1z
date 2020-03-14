@@ -123,7 +123,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'admincred' => env('ADMIN_CREDENTIALS'),
+    'auth_pass' => env('AUTH_PASS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +168,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -229,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'InterventionImage' => Intervention\Image\Facades\Image::class,
 
     ],
 

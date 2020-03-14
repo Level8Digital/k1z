@@ -12,6 +12,24 @@
     ================================================== -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <meta name="format-detection" content="telephone=no">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ url('_site-assets/favicon/apple-icon-57x57.png') }}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ url('_site-assets/favicon/apple-icon-60x60.png') }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ url('_site-assets/favicon/apple-icon-72x72.png') }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url('_site-assets/favicon/apple-icon-76x76.png') }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ url('_site-assets/favicon/apple-icon-114x114.png') }}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ url('_site-assets/favicon/apple-icon-120x120.png') }}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ url('_site-assets/favicon/apple-icon-144x144.png') }}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ url('_site-assets/favicon/apple-icon-152x152.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url('_site-assets/favicon/apple-icon-180x180.png') }}">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{{ url('_site-assets/favicon/android-icon-192x192.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url('_site-assets/favicon/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ url('_site-assets/favicon/favicon-96x96.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url('_site-assets/favicon/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ url('_site-assets/favicon/manifest.json') }}">
+  <meta name="msapplication-TileColor" content="#112983">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png') }}">
+  <meta name="theme-color" content="#112983">
   <!-- CSS
     ================================================== -->
   @yield('styles')
@@ -224,8 +242,8 @@
               trucks. Our team works hard to ensure our customers always walk away from a deal with a smile on their face. Come browse
               our huge stock of vehicles or tell us what you're looking for so we can find it for you.</p>
           </div>
-          <div class="col-md-5">
-            <img src="{{ url('_site-assets/images/k1z-alt-logo.png') }}" alt="alternate-logo" style="width:65%; margin-left:25%;">
+          <div class="col-md-5 alt-logo">
+            <img src="{{ url('_site-assets/images/k1z-alt-logo.png') }}" alt="alternate-logo">
           </div>
         </div>
       </div>
