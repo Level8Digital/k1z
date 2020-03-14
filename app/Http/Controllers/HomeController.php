@@ -121,7 +121,6 @@ class HomeController extends Controller
                 Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
             }
           }*/// foreach
-          print_r($images);
           forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
