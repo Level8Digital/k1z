@@ -14,13 +14,16 @@
   <!-- Color Style -->
   <link href="{{ url('_site-assets/css/colors/color5.css') }}" rel="stylesheet" type="text/css">
 
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+
   <script src="{{ url('_site-assets/js/modernizr.js') }}"></script><!-- Modernizr -->
 @endsection
 
 @section('content')
   <!-- Start Page header -->
   <div class="page-header parallax">
-    <div id="contact-map" style="width:100%;height:300px"></div>
+    <div id='map' style='width: 100%; height: 450px;'></div>
   </div>
 
   <!-- Utiity Bar -->
@@ -132,5 +135,20 @@
   <script src="{{ url('_site-assets/js/bootstrap.js') }}"></script> <!-- UI -->
   <script src="{{ url('_site-assets/js/init.js') }}"></script> <!-- All Scripts -->
   <script src="{{ url('_site-assets/vendor/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
+  <script>
+  	mapboxgl.accessToken = 'pk.eyJ1IjoiZXNzZW5jZS1kaWdpdGFsIiwiYSI6ImNpdjVuMnptYjAxaXIyenRqYXRtdWp5NTIifQ.D_OaRBdX_9Wwx8vlpGN_KA';
+  var map = new mapboxgl.Map({
+  container: 'map', // container id
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [-112.8071546, 49.7001103], // starting position
+  zoom: 14 // starting zoom
+  });
+
+  // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+
+  new mapboxgl.Marker().setLngLat([-112.8071546, 49.7001103]).addTo(map);
+  
+  </script>
 
 @endsection

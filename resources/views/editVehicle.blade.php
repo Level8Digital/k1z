@@ -107,7 +107,7 @@
                   </div>
                   </form>
                   <hr class="fw">
-                  @if(count($vehicle->images) != 0)
+                  @if(count($vehicle->images) > 0)
                     <form method="POST" action="/remove-images">
                       @csrf
                       <input type="hidden" name="inventory_id" value="{{ $vehicle->id }}">

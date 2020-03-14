@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>@yield('title')</title>
   <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
+  <meta name="keywords" content="Lethbridge, vehicles, used cars, used vehicles, preowned, pre-owned">
+  <meta name="author" content="Firestarter Digital">
   <!-- Mobile Specific Metas
     ================================================== -->
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
@@ -37,7 +37,7 @@
   <header class="site-header">
     <div class="container sp-cont">
       <div class="site-logo">
-          <h1><a href="index.html"><img src="{{ url('_site-assets/images/logo-new.png') }}" alt="Logo"></a></h1>
+          <h1><a href="index.html"><img src="{{ url('_site-assets/images/k1z-logo.png') }}" alt="Logo"></a></h1>
           <span class="site-tagline">Buying or Selling,<br>just got easier!</span>
       </div>
       <div class="header-right">
@@ -74,213 +74,117 @@
       <!-- Search Form -->
       <div class="search-form">
         <div class="search-form-inner">
-          <form>
+          <form method="POST" action="/filter-inventory">
+            @csrf
             <h3>Find a Car with our Quick Search</h3>
-              <div class="row">
-                <div class="col-md-6 col-sm-6">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Postcode</label>
-                      <input type="text" class="form-control">
-                    </div>
-                    <div class="col-md-6">
-                      <label>Body Type</label>
-                      <select name="Body Type" class="form-control selectpicker">
-                          <option selected>Any</option>
-                          <option>Wagon</option>
-                          <option>Minivan</option>
-                          <option>Coupe</option>
-                          <option>Crossover</option>
-                          <option>Van</option>
-                          <option>SUV</option>
-                          <option>Minicar</option>
-                          <option>Sedan</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Make</label>
-                      <select name="Make" class="form-control selectpicker">
-                          <option selected>Any</option>
-                          <option>Jaguar</option>
-                          <option>BMW</option>
-                          <option>Mercedes</option>
-                          <option>Porsche</option>
-                          <option>Nissan</option>
-                          <option>Mazda</option>
-                          <option>Acura</option>
-                          <option>Audi</option>
-                          <option>Bugatti</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label>Model</label>
-                      <select name="Model" class="form-control selectpicker">
-                          <option selected>Any</option>
-                          <option>GTX</option>
-                          <option>GTR</option>
-                          <option>GTS</option>
-                          <option>RLX</option>
-                          <option>M6</option>
-                          <option>S Class</option>
-                          <option>C Class</option>
-                          <option>B Class</option>
-                          <option>A Class</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Price Min</label>
-                      <select name="Min Price" class="form-control selectpicker">
-                          <option selected>Any</option>
-                          <option>$10000</option>
-                          <option>$20000</option>
-                          <option>$30000</option>
-                          <option>$40000</option>
-                          <option>$50000</option>
-                          <option>$60000</option>
-                          <option>$70000</option>
-                          <option>$80000</option>
-                          <option>$90000</option>
-                          <option>$100000</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label>Price Max</label>
-                      <select name="Max Price" class="form-control selectpicker">
-                          <option selected>Any</option>
-                          <option>$10000</option>
-                          <option>$20000</option>
-                          <option>$30000</option>
-                          <option>$40000</option>
-                          <option>$50000</option>
-                          <option>$60000</option>
-                          <option>$70000</option>
-                          <option>$80000</option>
-                          <option>$90000</option>
-                          <option>$100000</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox1" value="option1"> Brand new only
-                      </label>
-                      <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox2" value="option2"> Certified
-                      </label>
-                    </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                    <label>Make</label>
+                    <select name="makes[]" class="form-control selectpicker">
+                      <option selected value="any">Any</option>
+                        @foreach($makes as $mk)
+                        <option value="{{ $mk->make }}">{{ $mk->make }} ({{ $mk->total }})</option>
+                        @endforeach
+
+                    </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label>Min Year</label>
+                  <select name="minyear" class="form-control selectpicker">
+                    <option selected value="any">Any</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Max Year</label>
+                    <select name="maxyear" class="form-control selectpicker">
+                        <option selected value="any">Any</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                    </select>
                   </div>
                 </div>
-                  <div class="col-md-6 col-sm-6">
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>Min Year</label>
-                              <select name="Min Year" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>2005</option>
-                                  <option>2006</option>
-                                  <option>2007</option>
-                                  <option>2008</option>
-                                  <option>2009</option>
-                                  <option>2010</option>
-                                  <option>2011</option>
-                                  <option>2012</option>
-                                  <option>2013</option>
-                                  <option>2014</option>
-                              </select>
-                          </div>
-                          <div class="col-md-6">
-                              <label>Max Year</label>
-                              <select name="Max Year" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>2005</option>
-                                  <option>2006</option>
-                                  <option>2007</option>
-                                  <option>2008</option>
-                                  <option>2009</option>
-                                  <option>2010</option>
-                                  <option>2011</option>
-                                  <option>2012</option>
-                                  <option>2013</option>
-                                  <option>2014</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>Min Mileage</label>
-                              <select name="Min Mileage" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>10000</option>
-                                  <option>20000</option>
-                                  <option>30000</option>
-                                  <option>40000</option>
-                                  <option>50000</option>
-                                  <option>60000</option>
-                                  <option>70000</option>
-                                  <option>80000</option>
-                                  <option>90000</option>
-                                  <option>100000</option>
-                              </select>
-                          </div>
-                          <div class="col-md-6">
-                              <label>Max Mileage</label>
-                              <select name="Max Mileage" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>10000</option>
-                                  <option>20000</option>
-                                  <option>30000</option>
-                                  <option>40000</option>
-                                  <option>50000</option>
-                                  <option>60000</option>
-                                  <option>70000</option>
-                                  <option>80000</option>
-                                  <option>90000</option>
-                                  <option>100000</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-6">
-                              <label>Transmission</label>
-                              <select name="Transmission" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>5 Speed Manual</option>
-                                  <option>5 Speed Automatic</option>
-                                  <option>6 Speed Manual</option>
-                                  <option>6 Speed Automatic</option>
-                                  <option>7 Speed Manual</option>
-                                  <option>7 Speed Automatic</option>
-                                  <option>8 Speed Manual</option>
-                                  <option>8 Speed Automatic</option>
-                              </select>
-                          </div>
-                          <div class="col-md-6">
-                              <label>Body Color</label>
-                              <select name="Body Color" class="form-control selectpicker">
-                                  <option selected>Any</option>
-                                  <option>Red</option>
-                                  <option>Black</option>
-                                  <option>White</option>
-                                  <option>Yellow</option>
-                                  <option>Brown</option>
-                                  <option>Grey</option>
-                                  <option>Silver</option>
-                                  <option>Gold</option>
-                              </select>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-md-12">
-                              <input type="submit" class="btn btn-block btn-info btn-lg" value="Find my vehicle now">
-                          </div>
-                      </div>
-                  </div>
               </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Max Mileage</label>
+                    <select name="maxmileage" class="form-control selectpicker">
+                      <option selected value="any">Any</option>
+                      <option value="50000">50,00 km</option>
+                      <option value="75000">75,000 km</option>
+                      <option value="100000">100,00 km</option>
+                      <option value="150000">150,00 km</option>
+                      <option value="200000">200,00 km</option>
+                      <option value="250000">250,00 km</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label>Max Price</label>
+                    <select name="maxprice" class="form-control selectpicker">
+                      <option selected value="any">Any</option>
+                      <option value="5000">$5,000</option>
+                      <option value="10000">$10,000</option>
+                      <option value="20000">$20,000</option>
+                      <option value="30000">$30,000</option>
+                      <option value="40000">$40,000</option>
+                      <option value="50000">$50,000</option>
+                      <option value="100000">$100,000</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="form-group">
+                    <br />
+                    <button type="submit" class="btn-primary btn-sm btn"><i class="fa fa-folder-o"></i> Find My Vehicle</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -298,14 +202,30 @@
         	<div class="col-md-2 col-sm-6 footer_widget widget widget_custom_menu widget_links">
             <h4 class="widgettitle">Sitemap</h4>
             <ul>
-            	<li><a href="blog.html">Home</a></li>
-            	<li><a href="blog-masonry.html">Vehicles</a></li>
-            	<li><a href="about-html">Locate</a></li>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/inventory">Inventory</a>
+              </li>
+              <li><a href="/financing">Financing</a>
+              </li>
+              <li>
+                <a href="/faqs">FAQs</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
             </ul>
           </div>
       	  <div class="col-md-5 col-sm-6 footer_widget widget text_widget">
           	<h4 class="widgettitle">About K1Z</h4>
-            <p>Founded in Lethbridge, Alberta, K1Z has quickly became a must stop in your search for top notch pre-owned cars and trucks. Our team works hard to ensure our customers always walk away from a deal with a smile on their face. </p>
+            <p>Founded in Lethbridge, Alberta, K1Z has quickly became a must stop in your search for quality used cars and
+              trucks. Our team works hard to ensure our customers always walk away from a deal with a smile on their face. Come browse
+              our huge stock of vehicles or tell us what you're looking for so we can find it for you.</p>
+          </div>
+          <div class="col-md-5">
+            <img src="{{ url('_site-assets/images/k1z-alt-logo.png') }}" alt="alternate-logo" style="width:65%; margin-left:25%;">
           </div>
         </div>
       </div>
@@ -318,7 +238,7 @@
           </div>
           <div class="col-md-6 col-sm-6 copyrights-right">
             <ul class="social-icons social-icons-colored pull-right">
-              <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li class="googleplus"><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank"><i class="fa fa-google-plus"></i></a></li>
             </ul>
           </div>
         </div>

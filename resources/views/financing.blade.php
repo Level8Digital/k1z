@@ -19,7 +19,7 @@
 
 @section('content')
   <!-- Start Page header -->
-  <div class="page-header parallax" style="background-image:url(http://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
+  <div class="page-header parallax" style="background-image:url({{ url('_site-assets/images/financing-top.jpeg') }});">
     <div class="container">
       <h1 class="page-title">Financing</h1>
     </div>
@@ -119,7 +119,7 @@
                     @error('sin')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                  </div>                  
+                  </div>
                   <div class="form-group">
                     <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Adress *" value="{{ old('address') }}">
                     @error('address')

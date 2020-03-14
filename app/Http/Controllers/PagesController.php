@@ -16,9 +16,14 @@ class PagesController extends Controller
 {
     public function welcome()
     {
-      $inventory = Inventory::with(['images'])->orderBy('desc')->limit(12)->get();
+      $inventory = Inventory::with(['images'])->orderBy('created_at', 'desc')->limit(12)->get();
 
-      return view('welcome', ['recentInventory' => $inventory]);
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('welcome', ['inventory' => $inventory, 'makes' => $uniqueMakes]);
     }
 
     /*
@@ -26,7 +31,7 @@ class PagesController extends Controller
     */
     public function inventory()
     {
-      $inventory = DB::table('inventory')->orderBy('year', 'desc')->paginate(10);
+      $inventory = Inventory::with(['images'])->orderBy('year', 'desc')->paginate(10);
 
       $uniqueMakes = DB::table('inventory')
                        ->select('make', DB::raw('count(*) as total'))
@@ -122,9 +127,14 @@ class PagesController extends Controller
 	    session(['a12Ty9UkJ1' => 'What is ' . $numberConversion[$numberOne] .
 	    					' added to ' . $numberConversion[$numberTwo] . '? *', 'QbX4176lUU' => $numberOne + $numberTwo]);
 
-      $vehicle = Inventory::where('id', $id)->first();
+      $vehicle = Inventory::with(['images'])->findOrFail($id);
 
-      return view('vehicle', ['vehicle' => $vehicle]);
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('vehicle', ['vehicle' => $vehicle, 'makes' => $uniqueMakes]);
     }
 
     /*
@@ -144,11 +154,21 @@ class PagesController extends Controller
 	    session(['a12Ty9UkJ1' => 'What is ' . $numberConversion[$numberOne] .
 	    					' added to ' . $numberConversion[$numberTwo] . '? *', 'QbX4176lUU' => $numberOne + $numberTwo]);
 
-      return view('financing');
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('financing', ['makes' => $uniqueMakes]);
     }
     public function faqs()
     {
-      return view('faqs');
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('faqs', ['makes' => $uniqueMakes]);
     }
 
     /*
@@ -168,7 +188,12 @@ class PagesController extends Controller
 	    session(['a12Ty9UkJ1' => 'What is ' . $numberConversion[$numberOne] .
 	    					' added to ' . $numberConversion[$numberTwo] . '? *', 'QbX4176lUU' => $numberOne + $numberTwo]);
 
-      return view('contact');
+      $uniqueMakes = DB::table('inventory')
+                       ->select('make', DB::raw('count(*) as total'))
+                       ->groupBy('make')
+                       ->get();
+
+      return view('contact', ['makes' => $uniqueMakes]);
     }
 
     // SEND CONTACT FORM

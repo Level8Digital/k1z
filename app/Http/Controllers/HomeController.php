@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Imports\InventoryImport;
+use App\Http\Requests\VehicleForm;
 use App\Inventory;
 use App\Image;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $inventory = DB::table('inventory')->paginate(10);
+      $inventory = Inventory::with(['images'])->orderBy('created_at', 'desc')->paginate(10);
 
       return view('home', ['inventory' => $inventory]);
     }
@@ -56,10 +57,43 @@ class HomeController extends Controller
       return view('editVehicle', ['vehicle' => $vehicle]);
     }
 
-    public function updateVehicle(Request $request)
+    public function saveVehicle(VehicleForm $request)
+    {
+      // Fill vehicle
+  		$vehicle = new Inventory;
+      $vehicle->fill(request()->except('images'));
+  		// Save vehcile
+  		if(! $vehicle->save()){
+  			// Return error is save didnt work
+        return back()->with('error', 'Could not save vehicle!')->withInput();
+  		}
+
+      // Handle images
+      if($images = request()->file('images')) {
+        // Only 9 images allowed per vehicle
+        if(count($vehicle->images) < 9){
+          forEach($images as $img){
+            $name = uniqid() . '.' . $img->getClientOriginalExtension();
+            $targetPath = storage_path('app/public/images/');
+            if($img->move($targetPath, $name)) {
+                // save file name in the database
+                Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
+            }
+          }// foreach
+        } else{
+          return back()->with('error', 'Only 9 images per vehicle can be uploaded!')->withInput();
+        }
+      }// if images
+
+      $vehicle->refresh();
+
+      return redirect('/edit-vehicle/'.$vehicle->id)->with('success', 'Vehicle has been updated!')->with('vehicle', $vehicle);
+    }
+
+    public function updateVehicle(VehicleForm $request)
     {
       // Find vehicle
-  		$vehicle = Inventory::findOrFail(request()->id);
+  		$vehicle = Inventory::with(['images'])->findOrFail(request()->id);
       // Fill vehicle
   		$vehicle->fill(request()->all());
   		// Save vehcile
@@ -70,14 +104,19 @@ class HomeController extends Controller
 
       // Handle images
       if($images = request()->file('images')) {
-        forEach($images as $img){
-          $name = uniqid() . '.' . $img->getClientOriginalExtension();
-          $targetPath = storage_path('app/public/images/');
-          if($img->move($targetPath, $name)) {
-              // save file name in the database
-              Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
-          }
-        }// foreach
+        // Only 9 images allowed per vehicle
+        if(count($vehicle->images) < 9){
+          forEach($images as $img){
+            $name = uniqid() . '.' . $img->getClientOriginalExtension();
+            $targetPath = storage_path('app/public/images/');
+            if($img->move($targetPath, $name)) {
+                // save file name in the database
+                Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
+            }
+          }// foreach
+        } else{
+          return back()->with('error', 'Only 9 images per vehicle can be uploaded!')->withInput();
+        }
       }// if images
 
       $vehicle->refresh();
@@ -120,7 +159,7 @@ class HomeController extends Controller
       }
 
       // Success
-      return back()->with('success', 'Vehicles have been removed!');    
+      return back()->with('success', 'Vehicles have been removed!');
     }
 
     public function removeImages(Request $request)
@@ -158,6 +197,16 @@ class HomeController extends Controller
 
      forEach($sheet[0] as $row){
       if($row[0] == 'Stock #') continue;
+      if($row[0] == 'Summary:') continue;
+      if($row[0] == 'Used:') continue;
+      if($row[0] == 'New:') continue;
+      if($row[0] == 'Used Missing Photo:') continue;
+      if($row[0] == 'New Missing Photo:') continue;
+      if($row[0] == 'Used Missing Photo and Trim:') continue;
+      if($row[0] == 'New Missing Photo and Trim:') continue;
+      if($row[0] == '|') continue;
+      if($row[0] == '') continue;
+
 
       Inventory::firstOrCreate(['vin' => $row[1]],
         [

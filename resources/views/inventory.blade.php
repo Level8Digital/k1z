@@ -19,7 +19,7 @@
 
 @section('content')
   <!-- Start Page header -->
-  <div class="page-header parallax" style="background-image:url(http://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
+  <div class="page-header parallax" style="background-image:url({{ url('_site-assets/images/inventory.jpeg') }});">
     <div class="container">
       <h1 class="page-title">Inventory</h1>
     </div>
@@ -185,17 +185,27 @@
                   <!-- Result Item -->
                   <div class="result-item format-standard">
                     <div class="result-item-image">
-                      <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                      @if(count($vehicle->images) > 0)
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
+                        <span class="label label-default vehicle-age">{{ $vehicle->stock_num }}</span>
+                      @else
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                        <span class="label label-default vehicle-age">{{ $vehicle->stock_num }}</span>
+                      @endif
                     </div>
                     <div class="result-item-in">
-                      <h4 class="result-item-title"><a href="vehicle-details.html">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model }}</a></h4>
+                      <h4 class="result-item-title"><a href="/vehicle/{{ $vehicle->id }}">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model }}</a></h4>
                       <div class="result-item-cont">
                         <div class="result-item-block col1">
                           <p></p>
                         </div>
                         <div class="result-item-block col2">
                           <div class="result-item-pricing">
-                            <div class="price">${{ number_format($vehicle->price) }}</div>
+                            @if($vehicle->price != 0)
+                              <div class="price">${{ number_format($vehicle->price) }}</div>
+                            @elseif($vehicle->price == 0)
+                              <div class="price">Contact us</div>
+                            @endif
                           </div>
                           <div class="result-item-action-buttons">
 

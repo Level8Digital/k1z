@@ -19,7 +19,7 @@
 
 @section('content')
   <!-- Start Page header -->
-  <div class="page-header parallax" style="background-image:url(http://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
+  <div class="page-header parallax" style="background-image:url({{ url('_site-assets/images/faq.jpeg') }});">
     <div class="container">
       <h1 class="page-title">F.A.Q.</h1>
     </div>

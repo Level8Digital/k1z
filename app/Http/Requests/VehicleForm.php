@@ -13,7 +13,7 @@ class VehicleForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class VehicleForm extends FormRequest
     public function rules()
     {
         return [
-            //
+          'stock_num' => 'required|max:25',
+          'vin' => 'required|max:25',
+          'year' => 'required|max:4',
+          'make' => 'required|max:50',
+          'model' => 'required|max:50',
+          'trim' => 'required|max:25',
+          'kms' => 'numeric',
+          'color' => 'required|max:50',
+          'trans' => 'required|max:50',
+          'price' => 'numeric',
+          'desc' => 'nullable|max:1000',
+          'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:3550|nullable'
         ];
     }
 }

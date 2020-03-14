@@ -27,6 +27,7 @@ Route::get('/vehicle/{id}', 'PagesController@vehicleInfo');
 Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/import-xls', 'HomeController@importXls');
+Route::post('/save-vehicle', 'HomeController@saveVehicle');
 Route::post('/update-vehicle', 'HomeController@updateVehicle');
 Route::get('/add-vehicle', 'HomeController@addVehicle');
 Route::get('/edit-vehicle/{id}', 'HomeController@editVehicle');

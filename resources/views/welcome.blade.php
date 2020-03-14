@@ -119,35 +119,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-8">
-          <div class="toggle-make">
-            <a href="#"><i class="fa fa-navicon"></i></a>
-              <span>Browse by body style</span>
-          </div>
+
         </div>
         <div class="col-md-8 col-sm-6 col-xs-4">
           <ul class="utility-icons social-icons social-icons-colored">
-            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li class="googleplus"><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank"><i class="fa fa-google-plus"></i></a></li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="by-type-options">
-      <div class="container">
-        <div class="row">
-          <ul class="owl-carousel carousel-alt" data-columns="6" data-autoplay="" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="6" data-items-desktop-small="4" data-items-mobile="3" data-items-tablet="4">
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/wagon.png" alt=""> <span>Wagon</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/minivan.png" alt=""> <span>Minivan</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/coupe.png" alt=""> <span>Coupe</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/convertible.png" alt=""> <span>Convertible</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/crossover.png" alt=""> <span>Crossover</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/suv.png" alt=""> <span>SUV</span></a></li>
-            <li class="item"> <a href="results-list.html#"><img src="images/body-types/minicar.png" alt=""> <span>Minicar</span></a></li>
-            <li class="item"> <a href="results-list.html"><img src="images/body-types/sedan.png" alt=""> <span>Sedan</span></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+
   </div>
 
 
@@ -159,7 +140,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1 class="uppercase strong">Welcome to <br>K1Z Auto Sales</h1>
-          <p class="lead">We are Lethbridge's<br>top spot for <span class="accent-color">quality pre-owned vehicles</span></p>
+          <p class="lead">We are Lethbridge's<br>top spot for <span class="accent-color">quality used vehicles</span></p>
         </div>
         <div class="col-md-6">
           <p>Finding the right vehicle for yourself or your family can be a challenging process. At K1Z we are here to guide you every step of the way. From selecting the right make and model to ensuring financing is in place, our job is to make things simple. </p>
@@ -179,13 +160,17 @@
           <div class="carousel-wrapper">
             <div class="row">
               <ul class="owl-carousel carousel-fw" id="vehicle-slider" data-columns="4" data-autoplay="" data-pagination="yes" data-arrows="no" data-single-item="no" data-items-desktop="4" data-items-desktop-small="3" data-items-tablet="2" data-items-mobile="1">
-                @foreach($recentInventory as $vehicle)
+                @foreach($inventory as $vehicle)
                   <li class="item">
                     <div class="vehicle-block format-standard">
-                      <a href="vehicle-details.html" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                      @if(count($vehicle->images) > 0)
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
+                      @else
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                      @endif
                       <div class="vehicle-block-content">
                         <span class="label label-default vehicle-age">{{ $vehicle->year }}</span>
-                        <h5 class="vehicle-title"><a href="vehicle-details.html">{{ $vehicle->make . ' ' . $vehicle->model }}</a></h5>
+                        <h5 class="vehicle-title"><a href="/vehicle/{{ $vehicle->id }}">{{ $vehicle->make . ' ' . $vehicle->model }}</a></h5>
                         <span class="vehicle-meta">{{ number_format($vehicle->kms) . ' km | ' . $vehicle->trans . ' | ' . $vehicle->color  }}</span>
                         <span class="vehicle-cost">${{ number_format($vehicle->price) }}</span>
                       </div>
@@ -208,7 +193,7 @@
             </div>
             <h3>Get Approved</h3>
             <p>We offer an exclusive credit rebuilding program for those who need some assistance financing their purchase.
-            Whether you have good credit or bad credit, we'll get you into the used car you want at a price you can afford.</p>
+            Whether you have good credit or bad credit, we'll get you into the used car you want at a price you can afford. <a href="/financing">More...</a></p>
           </div>
         </div>
         <div class="col-md-4">
@@ -218,7 +203,7 @@
             </div>
             <h3>Cash Back</h3>
             <p>With our refer a friend program we will give you up to $100 back in cold hard cash! Contact us today to get
-            the full details and get cash in your pocket today!</p>
+            the full details and get cash in your pocket today! <a href="/contact">Contact us...</a></p>
           </div>
         </div>
         <div class="col-md-4">
@@ -227,8 +212,8 @@
               <i class="fa fa-car"></i>
             </div>
             <h3>Best Stock in Lethbridge</h3>
-            <p>We'll be sure to find you the vehicle you desire! And if you dont see the used car you're looking for, <span class="accent-color">we will find it for you!</span>
-            Come experience the K1Z difference today.</p>
+            <p>We'll be sure to find you the vehicle you desire! And if you dont see the used car you're looking for, we will find it for you!
+            Come experience the K1Z difference today. <a href="/inventory">Inventory...</a></p>
           </div>
         </div>
       </div>
@@ -247,12 +232,11 @@
                   <li class="item">
                     <div class="testimonial-block">
                       <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                        <p>I’ve  been doing business with this guys for 2 years from now. All I can say is they are the most amazing dealership ever. The owners go above and beyond to make sure you meet your needs and get an amazing deal. I would 100% recommend this dealership to anyone as they have lots of choices on the lot.</p>
                       </blockquote>
-                      <div class="testimonial-avatar"><img src="http://placehold.it/100x100&amp;text=IMAGE+PLACEHOLDER" alt="" width="60" height="60"></div>
                       <div class="testimonial-info">
                         <div class="testimonial-info-in">
-                          <strong>Lori Bailey</strong><span>My car Experts</span>
+                          <strong>Macky Cereza</strong><span><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank">Google+</a></span>
                         </div>
                       </div>
                     </div>
@@ -260,12 +244,11 @@
                   <li class="item">
                     <div class="testimonial-block">
                       <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                        <p>Best place in town to get vehicle from. Khalil worked so hard to get us lowest interest rate possible and got us approved. We went to volkswagen in lethbridge they said that we were not able to get  approved for loan but Khalil got us approved for same car. So if you looking to get vehicle make sure you talk to Khalil before anyone.</p>
                       </blockquote>
-                      <div class="testimonial-avatar"><img src="http://placehold.it/100x100&amp;text=IMAGE+PLACEHOLDER" alt="" width="60" height="60"></div>
                       <div class="testimonial-info">
                         <div class="testimonial-info-in">
-                          <strong>Lori Bailey</strong><span>My car Experts</span>
+                          <strong>Akashdeep Ghai</strong><span><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank">Google+</a></span>
                         </div>
                       </div>
                     </div>
@@ -273,12 +256,23 @@
                   <li class="item">
                     <div class="testimonial-block">
                       <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel. Donec vel mauris quam.</p>
+                        <p>Khalil and the guy's at K1Z were nothing but amazing. Simple as that. The customer service was amazing, no pressure to buy, and he helped me out so much with getting me into the vehicle I was wanting and needing. He's always available when you need him or have the simplest of questions. Nothing but honest and friendly with the entire car buying experience. For a first time car buyer in the market for an amazing deal, check out K1Z Auto. Thanks again, Khalil!</p>
                       </blockquote>
-                      <div class="testimonial-avatar"><img src="http://placehold.it/100x100&amp;text=IMAGE+PLACEHOLDER" alt="" width="60" height="60"></div>
                       <div class="testimonial-info">
                         <div class="testimonial-info-in">
-                          <strong>Willie &amp; Heather Obrien</strong>
+                          <strong>Duncan McRae</strong><span><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank">Google+</a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item">
+                    <div class="testimonial-block">
+                      <blockquote>
+                        <p>K1Z auto sales is the best place to buy a car. The service they give is best i have seen and they have a good stock of cars. I bought a car from them and my expirence with that car is awesome and i love it and they are like a family because the way they present their service.</p>
+                      </blockquote>
+                      <div class="testimonial-info">
+                        <div class="testimonial-info-in">
+                          <strong>Nishandeep singh Cheema</strong><span><a href="https://www.google.com/maps/place/K1Z+AUTO+SALE+%26+REPAIRS/@49.700483,-112.8091548,17z/data=!4m7!3m6!1s0x0:0x162a4093be70ae1d!8m2!3d49.700483!4d-112.8069661!9m1!1b1" target="_blank">Google+</a></span>
                         </div>
                       </div>
                     </div>

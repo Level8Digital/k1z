@@ -50,7 +50,6 @@
                               <td></td>
                               <td>Description</td>
                               <td>Price</td>
-                              <td>Payment</td>
                               <td>Actions</td>
                             </tr>
                           </thead>
@@ -63,9 +62,13 @@
                                 </td>
                                 <td>
                                   <!-- Result -->
-                                  <a href="vehicle-details.html" class="car-image"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                                  @if(count($vehicle->images) > 0)
+                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="car-image"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
+                                  @else
+                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="car-image"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                                  @endif
                                   <div class="search-find-results">
-                                    <h5><a href="vehicle-details.html">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model . ' | ' . $vehicle->stock_num }}</a></h5>
+                                    <h5><a href="/edit-vehicle/{{ $vehicle->id }}">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model . ' | ' . $vehicle->stock_num }}</a></h5>
                                     <ul class="inline">
                                       <li>{{ $vehicle->vin }}</li>
                                       <li>{{ $vehicle->trim }}</li>
@@ -75,9 +78,8 @@
                                   </div>
                                 </td>
                                 <td><span class="price">${{ number_format($vehicle->price) }}</span></td>
-                                <td align="center"><span class="label label-warning">Pending payment</span></td>
                                 <td align="center">
-                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="text-default btn" title="Edit"><i class="fa fa-archive"></i></a>
+                                  <a href="/edit-vehicle/{{ $vehicle->id }}" class="text-default btn" title="Edit"><i class="fa fa-archive"></i></a>
                                 </td>
                               </tr>
                             @endforeach
