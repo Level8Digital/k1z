@@ -76,15 +76,9 @@ class HomeController extends Controller
           forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
-            // Store image
             if($img->move($targetPath, $name)) {
-              // save file name in the database
-              Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
-              // Resize image
-              $image = InterventionImage::make($targetPath . $name);
-              $image->resize(1024, null, function ($constraint) {
-                $constraint->aspectRatio();
-              })->save($targetPath . $name);
+                // save file name in the database
+                Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
             }
           }
         } else{
@@ -113,15 +107,15 @@ class HomeController extends Controller
       if($images = request()->file('images')) {
         // Only 9 images allowed per vehicle
         if(count($vehicle->images) < 9){
-          /*forEach($images as $img){
+          forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
             if($img->move($targetPath, $name)) {
                 // save file name in the database
                 Image::create(['inventory_id' => $vehicle->id, 'src' => $name]);
             }
-          }*/// foreach
-          forEach($images as $img){
+          }// foreach
+          /*forEach($images as $img){
             $name = uniqid() . '.' . $img->getClientOriginalExtension();
             $targetPath = storage_path('app/public/images/');
             // Store image
@@ -134,7 +128,7 @@ class HomeController extends Controller
                 $constraint->aspectRatio();
               })->save($targetPath . $name);
             }
-          }
+          }*/
 
         } else{
           return back()->with('error', 'Only 9 images per vehicle can be uploaded!')->withInput();
