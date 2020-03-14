@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('_site-assets/vendor/revslider/css/settings.css') }}" media="screen" />
 
   <!-- GOOGLE FONTS FOR SLIDER REVOLUTION -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
   <link href="{{ url('_site-assets/css/custom.css') }}" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
   <!-- Color Style -->
   <link href="{{ url('_site-assets/css/colors/color5.css') }}" rel="stylesheet" type="text/css">
@@ -28,8 +28,8 @@
   <!-- START REVOLUTION SLIDER 4.5.0 fullwidth mode -->
   <div class="hero-area">
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,300,700,800,900' rel='stylesheet' type='text/css'>
     <div class="tp-banner-container">
       <div class="tp-banner">
         <ul>	<!-- SLIDE  -->
@@ -166,7 +166,7 @@
                       @if(count($vehicle->images) > 0)
                         <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
                       @else
-                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
                       @endif
                       <div class="vehicle-block-content">
                         <span class="label label-default vehicle-age">{{ $vehicle->year }}</span>

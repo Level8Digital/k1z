@@ -189,7 +189,7 @@
                         <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
                         <span class="label label-default vehicle-age">{{ $vehicle->stock_num }}</span>
                       @else
-                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                        <a href="/vehicle/{{ $vehicle->id }}" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
                         <span class="label label-default vehicle-age">{{ $vehicle->stock_num }}</span>
                       @endif
                     </div>

@@ -121,7 +121,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Adress *" value="{{ old('address') }}">
+                    <input type="text" id="address" name="address"  class="form-control input-lg" placeholder="Address *" value="{{ old('address') }}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

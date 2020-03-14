@@ -88,7 +88,7 @@
                         @enderror
                       </div>
                       <div class="form-group">
-                        <textarea cols="6" rows="8" name="desc" class="form-control input-lg" placeholder="Description *">{{ old('desc', $vehicle->desc) }}</textarea>
+                        <textarea cols="6" rows="8" name="desc" class="form-control input-lg" placeholder="Description">{{ old('desc', $vehicle->desc) }}</textarea>
                         @error('desc')
                           <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
