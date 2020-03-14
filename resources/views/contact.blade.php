@@ -141,14 +141,15 @@
   container: 'map', // container id
   style: 'mapbox://styles/mapbox/streets-v11',
   center: [-112.8071546, 49.7001103], // starting position
-  zoom: 14 // starting zoom
+  zoom: 14,
+  dragPan: false // starting zoom
   });
 
   // Add zoom and rotation controls to the map.
   map.addControl(new mapboxgl.NavigationControl());
 
   new mapboxgl.Marker().setLngLat([-112.8071546, 49.7001103]).addTo(map);
-  
+
   </script>
 
 @endsection
