@@ -18,4 +18,11 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,N]
+
+  <IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000"
+  </IfModule>
 </IfModule>
