@@ -35,7 +35,7 @@ class VehicleForm extends FormRequest
           'trans' => 'required|max:50',
           'price' => 'numeric',
           'desc' => 'nullable|max:1000',
-          'images.*' => 'image|mimes:jpeg,png,jpg,svg|max:3550|nullable'
+          'images[]' => 'image|mimes:jpeg,png,jpg,svg|max:3550|nullable'
         ];
     }
 }

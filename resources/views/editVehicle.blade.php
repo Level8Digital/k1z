@@ -100,6 +100,9 @@
                 <div class="col-md-6">
                   <h3>Add Images</h3>
                   <input type="file" name="images[]" multiple>
+                  @error('images')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
                   <div class="row">
                     <div class="col-md-12">
                       <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg pull-right" value="Save vehicle!">
