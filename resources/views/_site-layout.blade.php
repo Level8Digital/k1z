@@ -32,6 +32,18 @@
   <meta name="theme-color" content="#112983">
   <!-- CSS
     ================================================== -->
+  <link href="{{ url('_site-assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('_site-assets/css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('_site-assets/css/style.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('_site-assets/vendor/prettyphoto/css/prettyPhoto.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('_site-assets/vendor/owl-carousel/css/owl.carousel.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('_site-assets/vendor/owl-carousel/css/owl.theme.css') }}" rel="stylesheet" type="text/css">
+  <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="{{ url('css/ie.css') }}" media="screen" /><![endif]-->
+  <link href="{{ url('_site-assets/css/custom.css') }}" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
+  <!-- Color Style -->
+  <link href="{{ url('_site-assets/css/colors/color5.css') }}" rel="stylesheet" type="text/css">
+
+  <script src="{{ url('_site-assets/js/modernizr.js') }}"></script><!-- Modernizr -->
   @yield('styles')
 
   <!-- SCRIPTS
@@ -55,7 +67,7 @@
   <header class="site-header">
     <div class="container sp-cont">
       <div class="site-logo">
-          <h1><a href="index.html"><img src="{{ url('_site-assets/images/k1z-logo.png') }}" alt="Logo"></a></h1>
+          <h1><a href="/"><img src="{{ url('_site-assets/images/k1z-logo-alt.png') }}" alt="Logo"></a></h1>
           <span class="site-tagline">Buying or Selling,<br>just got easier!</span>
       </div>
       <div class="header-right">
@@ -243,7 +255,7 @@
               our huge stock of vehicles or tell us what you're looking for so we can find it for you.</p>
           </div>
           <div class="col-md-5 alt-logo">
-            <img src="{{ url('_site-assets/images/k1z-alt-logo.png') }}" alt="alternate-logo">
+            <img src="{{ url('_site-assets/images/k1z-alt-logo2.png') }}" alt="alternate-logo">
           </div>
         </div>
       </div>
@@ -267,6 +279,15 @@
   <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </div>
 
+<script src="{{ url('_site-assets/js/jquery-2.0.0.min.js') }}"></script> <!-- Jquery Library Call -->
+<script src="{{ url('_site-assets/vendor/prettyphoto/js/prettyphoto.js') }}"></script> <!-- PrettyPhoto Plugin -->
+<script src="{{ url('_site-assets/js/ui-plugins.js') }}"></script> <!-- UI Plugins -->
+<script src="{{ url('_site-assets/js/helper-plugins.js') }}"></script> <!-- Helper Plugins -->
+<script src="{{ url('_site-assets/vendor/owl-carousel/js/owl.carousel.min.js') }}"></script> <!-- Owl Carousel -->
+<script src="{{ url('_site-assets/vendor/password-checker.js') }}"></script> <!-- Password Checker -->
+<script src="{{ url('_site-assets/js/bootstrap.js') }}"></script> <!-- UI -->
+<script src="{{ url('_site-assets/js/init.min.js') }}"></script> <!-- All Scripts -->
+<script src="{{ url('_site-assets/vendor/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
 @yield('scripts')
 
 </body>

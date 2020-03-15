@@ -82,21 +82,7 @@ var AUTOSTARS = window.AUTOSTARS || {};
        		$(this).focus();
 		});
 	}
-/* ==================================================
-   Twitter Widget
-================================================== */
-	AUTOSTARS.TwitterWidget = function() {
-		$('.twitter-widget').each(function(){
-			var twitterInstance = $(this);
-			var twitterTweets = twitterInstance.attr("data-tweets-count") ? twitterInstance.attr("data-tweets-count") : "1"
-			twitterInstance.twittie({
-            	dateFormat: '%b. %d, %Y',
-            	template: '<li><i class="fa fa-twitter"></i> {{tweet}} <span class="date">{{date}}</span></li>',
-            	count: twitterTweets,
-            	hideReplies: true
-        	});
-		});
-	}
+
 /* ==================================================
    Hero Flex Slider
 ================================================== */
@@ -459,7 +445,6 @@ $(document).ready(function(){
 	AUTOSTARS.accordion();
 	AUTOSTARS.toggle();
 	AUTOSTARS.toolTip();
-	AUTOSTARS.TwitterWidget();
 	AUTOSTARS.galleryflex();
 	AUTOSTARS.OwlCarousel();
 	AUTOSTARS.PrettyPhoto();

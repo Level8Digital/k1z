@@ -2,21 +2,6 @@
 
 @section('title', 'K1Z Auto Sales - Financing | Lethbridge, Alberta | Quality Pre-Owned/Used Vehicles')
 
-@section('styles')
-  <link href="{{ url('_site-assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ url('_site-assets/css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ url('_site-assets/css/style.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ url('_site-assets/vendor/prettyphoto/css/prettyPhoto.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ url('_site-assets/vendor/owl-carousel/css/owl.carousel.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ url('_site-assets/vendor/owl-carousel/css/owl.theme.css') }}" rel="stylesheet" type="text/css">
-  <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="{{ url('css/ie.css') }}" media="screen" /><![endif]-->
-  <link href="{{ url('_site-assets/css/custom.css') }}" rel="stylesheet" type="text/css"><!-- CUSTOM STYLESHEET FOR STYLING -->
-  <!-- Color Style -->
-  <link href="{{ url('_site-assets/css/colors/color5.css') }}" rel="stylesheet" type="text/css">
-
-  <script src="{{ url('_site-assets/js/modernizr.js') }}"></script><!-- Modernizr -->
-@endsection
-
 @section('content')
   <!-- Start Page header -->
   <div class="page-header parallax" style="background-image:url({{ url('_site-assets/images/financing-top.jpeg') }});">
@@ -215,18 +200,5 @@
   </div>
   <!-- End Body Content -->
 
-
-@endsection
-
-@section('scripts')
-  <script src="{{ url('_site-assets/js/jquery-2.0.0.min.js') }}"></script> <!-- Jquery Library Call -->
-  <script src="{{ url('_site-assets/vendor/prettyphoto/js/prettyphoto.js') }}"></script> <!-- PrettyPhoto Plugin -->
-  <script src="{{ url('_site-assets/js/ui-plugins.js') }}"></script> <!-- UI Plugins -->
-  <script src="{{ url('_site-assets/js/helper-plugins.js') }}"></script> <!-- Helper Plugins -->
-  <script src="{{ url('_site-assets/vendor/owl-carousel/js/owl.carousel.min.js') }}"></script> <!-- Owl Carousel -->
-  <script src="{{ url('_site-assets/vendor/password-checker.js') }}"></script> <!-- Password Checker -->
-  <script src="{{ url('_site-assets/js/bootstrap.js') }}"></script> <!-- UI -->
-  <script src="{{ url('_site-assets/js/init.js') }}"></script> <!-- All Scripts -->
-  <script src="{{ url('_site-assets/vendor/flexslider/js/jquery.flexslider.js') }}"></script> <!-- FlexSlider -->
 
 @endsection

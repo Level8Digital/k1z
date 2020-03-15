@@ -1524,7 +1524,7 @@ body.boxed .body{
 	font-size:0;
 }
 .site-logo img{
-	max-width:175px;
+	max-width:150px;
 
 	-webkit-transition: max-height 0.1s linear 0s;
 	-moz-transition: max-height 0.1s linear 0s;
@@ -1542,7 +1542,7 @@ body.boxed .body{
 .sticky-header .site-logo{
 }
 .sticky-header .site-logo img{
-	max-height:85px;
+	max-width: 95px;
 	-webkit-transition: max-height 0.1s linear 0s;
 	-moz-transition: max-height 0.1s linear 0s;
 	-ms-transition: max-height 0.1s linear 0s;
@@ -2536,7 +2536,7 @@ h1.page-title{
 	right:-16px;
 }
 .site-footer{
-	background:#2f2f2f;
+	background:#202020;
 	color:#999;
 }
 .site-footer .form-control{
@@ -4829,7 +4829,7 @@ h1.page-title{
 	margin:0;
 	padding:0;
 	border:0;
-	min-height:200px;
+	min-height:275px;
 	top:-55px;
 	position:relative;
 	margin-bottom:-55px;
@@ -4837,8 +4837,9 @@ h1.page-title{
 }
 .page-header h1.page-title{
 	color:#fff;
-	padding:105px 0 0;
+	padding:135px 0 0;
 	margin:0;
+	text-shadow: 1px 1px #000;
 }
 .prosite-header{
 	min-height:300px;
@@ -5335,6 +5336,9 @@ body{
 	}
 }
 @media only screen and (max-width: 767px) {
+	.alt-logo img{
+		margin-left: 3%;
+	}
 	.site-header-wrapper{
 		position:relative;
 	}
@@ -5357,6 +5361,9 @@ body{
 
 	.header-v2 .site-logo{
 		min-width:inherit;
+	}
+	.main-navigation ul{
+		padding-left: 3%;
 	}
 	.page-header{
 		min-height:100px;
@@ -5386,6 +5393,13 @@ body{
 	.service-block p{
 		font-size:12px;
 		line-height:normal;
+	}
+	.spacer-75{
+		height: 40px;
+	}
+	.latest-testimonials{
+		padding-left: 3%;
+		padding-right: 3%;
 	}
 	.results-list-view .result-item-image{
 		width:100%;

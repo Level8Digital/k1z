@@ -65,7 +65,7 @@
                                   @if(count($vehicle->images) > 0)
                                     <a href="/edit-vehicle/{{ $vehicle->id }}" class="car-image"><img src="{{ url('storage/images/' . $vehicle->images[0]->src) }}" alt=""></a>
                                   @else
-                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="car-image"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                                    <a href="/edit-vehicle/{{ $vehicle->id }}" class="car-image"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
                                   @endif
                                   <div class="search-find-results">
                                     <h5><a href="/edit-vehicle/{{ $vehicle->id }}">{{ $vehicle->year . ' ' . $vehicle->make . ' ' . $vehicle->model . ' | ' . $vehicle->stock_num }}</a></h5>
