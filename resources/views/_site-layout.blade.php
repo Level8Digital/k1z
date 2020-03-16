@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html class="no-js">
 <head>
+  <link rel="canonical" href="https://www.k1zautosales.ca">
   <!-- Basic Page Needs
     ================================================== -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
