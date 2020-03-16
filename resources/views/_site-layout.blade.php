@@ -5,7 +5,7 @@
     ================================================== -->
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>@yield('title')</title>
-  <meta name="description" content="">
+  <meta name="description" content="Founded in Lethbridge, Alberta, we provide quality used vehicles with an exclusive credit rebuilding program.">
   <meta name="keywords" content="Lethbridge, vehicles, used cars, used vehicles, preowned, pre-owned">
   <meta name="author" content="Firestarter Digital">
   <!-- Mobile Specific Metas
