@@ -4,7 +4,7 @@
 
 @section('content')
   <!-- Start Page header -->
-  <div class="page-header parallax" style="background-image:url(http://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
+  <div class="page-header parallax" style="background-image:url(https://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
     <div class="container">
       <h1 class="page-title">Financing</h1>
     </div>
@@ -70,15 +70,15 @@
               @else
                 <div class="single-listing-images">
                   <div class="featured-image format-image">
-                      <a href="http://placehold.it/890x600&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/890x600&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
+                      <a href="https://placehold.it/890x600&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/890x600&amp;text=IMAGE+PLACEHOLDER" alt=""></a>
                   </div>
                   <div class="additional-images">
                     <ul class="owl-carousel" data-columns="4" data-pagination="no" data-arrows="yes" data-single-item="no" data-items-desktop="4" data-items-desktop-small="4" data-items-tablet="3" data-items-mobile="3">
-                      <li class="item format-video"> <a href="https://www.youtube.com/watch?v=P5mvnA4BV7Y" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
-                      <li class="item format-image"> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
-                      <li class="item format-image"> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
-                      <li class="item format-image"> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
-                      <li class="item format-image"> <a href="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="http://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
+                      <li class="item format-video"> <a href="https://www.youtube.com/watch?v=P5mvnA4BV7Y" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
+                      <li class="item format-image"> <a href="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
+                      <li class="item format-image"> <a href="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
+                      <li class="item format-image"> <a href="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
+                      <li class="item format-image"> <a href="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" data-rel="prettyPhoto[gallery]" class="media-box"><img src="https://placehold.it/600x400&amp;text=IMAGE+PLACEHOLDER" alt=""></a></li>
                     </ul>
                   </div>
                 </div>

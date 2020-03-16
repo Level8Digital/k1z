@@ -23,7 +23,6 @@
   RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,N]
 
   RewriteCond %{HTTP_HOST} ^k1z.frb.io$
-  RewriteCond %{HTTP_HOST} ^k1zautosales.com$
   RewriteRule ^$ https://www.k1zautosales.ca [L,R=301]
 
 
