@@ -22,8 +22,8 @@
   RewriteCond %{HTTP:X-Forwarded-Proto} !=https
   RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,N]
 
-  RewriteCond %{HTTP_HOST} !^www\.k1z\.frb\.io [NC]
-  RewriteRule (.*) https://www.k1zautosales.ca/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^k1z.frb.io$
+  RewriteRule ^$ https://www.k1zautosales.ca [L,R=301]
 
   <IfModule mod_headers.c>
     Header always set Strict-Transport-Security "max-age=31536000"
