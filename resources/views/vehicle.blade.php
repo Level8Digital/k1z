@@ -4,9 +4,9 @@
 
 @section('content')
   <!-- Start Page header -->
-  <div class="page-header parallax" style="background-image:url(https://placehold.it/1200x300&amp;text=IMAGE+PLACEHOLDER);">
+  <div class="page-header parallax" style="background-image:url({{ url('_site-assets/images/vehicle.jpeg') }});">
     <div class="container">
-      <h1 class="page-title">Financing</h1>
+      <h1 class="page-title">Your Next Vehicle?</h1>
     </div>
   </div>
 
