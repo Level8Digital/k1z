@@ -28,7 +28,7 @@ class SendContact extends Mailable
      */
      public function build()
      {
-        $this->from($this->messageDetails['email'])
+        $this->from('admin@k1zautosales.ca')
           ->subject('k1zautosales.ca | Website response')
           ->replyTo($this->messageDetails['email'])
           ->view('contactEmail');

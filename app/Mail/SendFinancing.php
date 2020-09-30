@@ -28,7 +28,7 @@ class SendFinancing extends Mailable
      */
      public function build()
      {
-        $this->from($this->messageDetails['email'])
+        $this->from('admin@k1zautosales.ca')
           ->subject('k1zautosales.ca | Financing Application')
           ->replyTo($this->messageDetails['email'])
           ->view('financingEmail');
