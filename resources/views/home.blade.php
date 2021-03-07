@@ -21,8 +21,8 @@
 
                   <!-- UPLOAD CSV FILE -->
                   <div class="tab-pane">
-                    <h3>Upload .XLSX File</h3>
-                    <div class="lighter"><p><strong>1.</strong> Export vehicles from Kijiji into a .xls file. <strong>2.</strong> Save .xls file as a .xlsx file in Excel or Google Sheets. <strong>3.</strong> Upload .xlsx file below.</p></div>
+                    <h3>Upload Kijiji CSV File</h3>
+                    <div class="lighter"><p>Export vehicles from Kijiji into .csv file (default option after update). No need to convert to .xlsx file anymore.</div>
 
                     <form method="POST" action="/import-xls" enctype="multipart/form-data">
                       @csrf

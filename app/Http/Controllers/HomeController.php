@@ -206,12 +206,50 @@ class HomeController extends Controller
     public function importXls(Request $request)
     {
       /*request()->validate([
-       'xls'  => 'required|mimes:csv,xls|max:2048',
+       'xls'  => 'required|mimes:csv|max:2048',
      ]);*/
+      $file = $request->xls;
+      $row = 1;
+      $array = [];
+      if (($handle = fopen($file, "r")) !== FALSE) {
+       while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+         $num = count($data);
+         $row++;
+         $array = [];
+         for ($c=0; $c < $num; $c++) {
+            $array[] =  $data[$c];
+         }
+          $vehicleCache[] =  $array;
+       }
+       fclose($handle);
+      }
 
-     $sheet = Excel::toArray(new InventoryImport, request()->file('xls'));
+      // Remove header array
+      $headers = array_shift($vehicleCache);
 
-     forEach($sheet[0] as $row){
+      forEach($vehicleCache as $row){
+        if($row[28] == 'Y'){
+          Inventory::firstOrCreate(['stock_num' => $row[17]],
+            [
+              'stock_num' => $row[17],
+              //'vin' => $row[1],
+              'year' => $row[8],
+              'make' => $row[16],
+              'model' => $row[14],
+              'trim' => $row[11],
+              'kms' => $row[19],
+              'title' => $row[33],
+              'color' => $row[18],
+              'trans' => $row[12],
+              'ad_num' => $row[35],
+              'price' => $row[20],
+            ]
+          );
+        }
+
+      }
+     //$sheet = Excel::toArray(new InventoryImport, request()->file('xls'));
+     /*forEach($sheet[0] as $row){
       if($row[0] == 'Stock #') continue;
       if($row[0] == 'Summary:') continue;
       if($row[0] == 'Used:') continue;
@@ -222,29 +260,7 @@ class HomeController extends Controller
       if($row[0] == 'New Missing Photo and Trim:') continue;
       if($row[0] == '|') continue;
       if($row[0] == '') continue;
-
-
-      Inventory::firstOrCreate(['vin' => $row[1]],
-        [
-          'stock_num' => $row[0],
-          'vin' => $row[1],
-          'year' => $row[2],
-          'make' => $row[3],
-          'model' => $row[4],
-          'trim' => $row[5],
-          'kms' => $row[6],
-          'title' => $row[7],
-          'color' => $row[8],
-          'trans' => $row[9],
-          'dis' => $row[10],
-          'dok' => $row[11],
-          'page' => $row[12],
-          'ad_num' => $row[13],
-          'price' => $row[14],
-        ]
-      );
-
-      }
+      */
 
       return redirect('/home')->with('success', 'Spread sheet has been imported!');
     }

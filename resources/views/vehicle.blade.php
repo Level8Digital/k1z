@@ -106,7 +106,6 @@
                   <li class="list-group-item"> <span class="badge">Mileage</span> {{ number_format($vehicle->kms) }} km</li>
                   <li class="list-group-item"> <span class="badge">Transmission</span> {{ $vehicle->trans }}</li>
                   <li class="list-group-item"> <span class="badge">Condition</span> Pre-Owned</li>
-                  <li class="list-group-item"> <span class="badge">VIN</span> {{ $vehicle->vin }}</li>
                   <li class="list-group-item"> <span class="badge">Color</span> {{ $vehicle->color }}</li>
                 </ul>
               </div>

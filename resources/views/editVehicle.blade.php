@@ -33,12 +33,12 @@
                           <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                       </div>
-                      <div class="form-group">
+                      <!--<div class="form-group">
                         <input type="text" name="vin"  class="form-control input-lg" placeholder="VIN *" value="{{ old('vin', $vehicle->vin) }}">
                         @error('vin')
                           <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                      </div>
+                      </div>-->
                       <div class="form-group">
                         <input type="text" name="year"  class="form-control input-lg" placeholder="Year *" value="{{ old('year', $vehicle->year) }}">
                         @error('year')

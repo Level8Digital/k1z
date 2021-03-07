@@ -25,7 +25,7 @@ class VehicleForm extends FormRequest
     {
         return [
           'stock_num' => 'required|max:25',
-          'vin' => 'required|max:25',
+          //'vin' => 'required|max:25',
           'year' => 'required|max:4',
           'make' => 'required|max:50',
           'model' => 'required|max:50',
