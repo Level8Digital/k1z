@@ -40,7 +40,7 @@
                     <div class="dashboard-block-head">
                       <button type="submit" class="btn btn-danger btn-sm pull-right">Remove Selected</button>
                       <a href="/add-vehicle" class="btn btn-default btn-sm pull-right" style="margin-right:15px;">Add Vehicle</a>
-                      <h3>Inventory</h3>
+                      <h3>Inventory <small>({{ $inventory->total() }})</small></h3>
                     </div>
                     <div class="table-responsive">
 
